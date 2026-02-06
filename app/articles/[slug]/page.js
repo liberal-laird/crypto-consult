@@ -1,7 +1,8 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 
-export default async function ArticlePage({ params }) {
+export default async function ArticlePage(props) {
+  const params = await props.params;
   const slug = params.slug;
   
   if (!slug) {

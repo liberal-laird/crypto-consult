@@ -1,0 +1,33 @@
+# CryptoA8King Robots.txt
+# Optimized for Google Search
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://crypto-consult-seven.vercel.app/sitemap.xml
+
+# Crawl delay
+Crawl-delay: 10
+
+# Googlebot specific
+User-agent: Googlebot
+Allow: /
+
+# Google Image Bot
+User-agent: Googlebot-Image
+Allow: /
+
+# Google News
+User-agent: Googlebot-News
+Allow: /
+
+# Bing
+User-agent: Bingbot
+Allow: /
+
+# Disallow private/admin pages
+Disallow: /api/
+Disallow: /_next/
+Disallow: /404
+Disallow: /500

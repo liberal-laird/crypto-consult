@@ -50,6 +50,35 @@ export default function Home() {
       color: '#ffffff',
       fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
     }}>
+      {/* Structured Data - CollectionPage */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'CollectionPage',
+            name: 'CryptoA8King - 首頁',
+            description: '專業的加密貨幣投資諮詢、市場分析和 DeFi 指南平台',
+            url: 'https://crypto-consult-seven.vercel.app/',
+            mainEntity: {
+              '@type': 'ItemList',
+              numberOfItems: articles.length,
+              itemListElement: articles.map((article, index) => ({
+                '@type': 'ListItem',
+                position: index + 1,
+                item: {
+                  '@type': 'Article',
+                  name: article.title,
+                  url: `https://crypto-consult-seven.vercel.app/articles/${article.slug}`,
+                  description: article.summary,
+                  articleSection: article.category
+                }
+              }))
+            }
+          })
+        }}
+      />
+      
       {/* Header */}
       <header style={{
         background: '#161b22',
@@ -71,10 +100,10 @@ export default function Home() {
             fontWeight: 'bold',
             color: '#f7931a',
             textDecoration: 'none'
-          }}>
+          }} aria-label="CryptoA8King 首頁">
             CryptoA8King
           </Link>
-          <nav style={{ display: 'flex', gap: '2rem' }}>
+          <nav style={{ display: 'flex', gap: '2rem' }} role="navigation" aria-label="主導航">
             <Link href="/" style={{ color: '#8b949e', textDecoration: 'none' }}>首頁</Link>
             <Link href="/articles" style={{ color: '#8b949e', textDecoration: 'none' }}>文章</Link>
             <Link href="/market" style={{ color: '#8b949e', textDecoration: 'none' }}>行情</Link>
@@ -88,7 +117,7 @@ export default function Home() {
         textAlign: 'center',
         padding: '4rem 2rem',
         background: 'linear-gradient(135deg, #161b22 0%, #0d1117 100%)'
-      }}>
+      }} role="banner">
         <h1 style={{
           fontSize: '3rem',
           marginBottom: '1rem',
@@ -110,7 +139,7 @@ export default function Home() {
             borderRadius: '8px',
             fontWeight: 600,
             textDecoration: 'none'
-          }}>
+          }} aria-label="瀏覽最新文章">
             瀏覽文章
           </Link>
           <Link href="/consult" style={{
@@ -121,15 +150,15 @@ export default function Home() {
             borderRadius: '8px',
             fontWeight: 600,
             textDecoration: 'none'
-          }}>
+          }} aria-label="預約專業諮詢">
             立即諮詢
           </Link>
         </div>
       </section>
 
       {/* Services */}
-      <section style={{ maxWidth: '1200px', margin: '0 auto', padding: '4rem 2rem' }}>
-        <h2 style={{ fontSize: '2rem', textAlign: 'center', marginBottom: '2rem' }}>我們的服務</h2>
+      <section style={{ maxWidth: '1200px', margin: '0 auto', padding: '4rem 2rem' }} aria-labelledby="services-heading">
+        <h2 id="services-heading" style={{ fontSize: '2rem', textAlign: 'center', marginBottom: '2rem' }}>我們的服務</h2>
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
@@ -143,7 +172,7 @@ export default function Home() {
               padding: '2rem',
               textAlign: 'center'
             }}>
-              <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>{service.icon}</div>
+              <div style={{ fontSize: '3rem', marginBottom: '1rem' }} aria-hidden="true">{service.icon}</div>
               <h3 style={{ fontSize: '1.25rem', marginBottom: '0.75rem' }}>{service.title}</h3>
               <p style={{ color: '#8b949e', fontSize: '0.9rem' }}>{service.desc}</p>
             </div>
@@ -152,8 +181,8 @@ export default function Home() {
       </section>
 
       {/* Articles */}
-      <section style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 2rem 4rem' }}>
-        <h2 style={{ fontSize: '2rem', textAlign: 'center', marginBottom: '2rem' }}>最新文章</h2>
+      <section style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 2rem 4rem' }} aria-labelledby="articles-heading">
+        <h2 id="articles-heading" style={{ fontSize: '2rem', textAlign: 'center', marginBottom: '2rem' }}>最新文章</h2>
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))',
@@ -223,7 +252,7 @@ export default function Home() {
         background: '#161b22',
         borderTop: '1px solid #30363d',
         padding: '3rem 2rem'
-      }}>
+      }} role="contentinfo">
         <div style={{
           maxWidth: '1200px',
           margin: '0 auto',

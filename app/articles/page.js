@@ -26,19 +26,19 @@ export default function ArticlesPage() {
   const localArticles = [
     {
       id: 'local-1',
-      title: '2024年比特币减半解读：历史数据与未来展望',
+      title: '2024年比特幣減半解讀：歷史數據與未來展望',
       slug: 'bitcoin-halving-2024',
-      summary: '深入分析比特币减半的历史规律、价格走势以及对2024年减半的预测。',
-      category: '比特币',
+      summary: '深入分析比特幣減半的歷史規律、價格走勢以及對2024年減半的預測。',
+      category: '比特幣',
       author: 'CryptoA8King',
       created_at: '2024-01-15',
       isLocal: true
     },
     {
       id: 'local-2',
-      title: 'DeFi 入门指南：去中心化金融详解',
+      title: 'DeFi 入門指南：去中心化金融詳解',
       slug: 'defi-guide-beginners',
-      summary: '全面介绍 DeFi（去中心化金融）的概念、主要协议和投资机会。',
+      summary: '全面介紹 DeFi（去中心化金融）的概念、主要協議和投資機會。',
       category: 'DeFi',
       author: 'CryptoA8King',
       created_at: '2024-01-20',
@@ -46,10 +46,10 @@ export default function ArticlesPage() {
     },
     {
       id: 'local-3',
-      title: 'Layer 2 解决方案详解：比特币与以太坊扩容',
+      title: 'Layer 2 解決方案詳解：比特幣與以太坊擴容',
       slug: 'layer2-scaling-solutions',
-      summary: '比较分析主流 Layer 2 扩容方案，包括闪电网络、Arbitrum、Optimism 等。',
-      category: '技术',
+      summary: '比較分析主流 Layer 2 擴容方案，包括閃電網絡、Arbitrum、Optimism 等。',
+      category: '技術',
       author: 'CryptoA8King',
       created_at: '2024-01-25',
       isLocal: true
@@ -65,7 +65,7 @@ export default function ArticlesPage() {
   const formatDate = (dateString) => {
     if (!dateString) return '';
     try {
-      return new Date(dateString).toLocaleDateString('zh-CN', {
+      return new Date(dateString).toLocaleDateString('zh-TW', {
         year: 'numeric',
         month: 'long',
         day: 'numeric'
@@ -75,7 +75,7 @@ export default function ArticlesPage() {
     }
   };
 
-  const categories = ['all', '比特币', 'DeFi', '技术', '新闻', '投资', 'MICA分析'];
+  const categories = ['all', '比特幣', 'DeFi', '技術', '新聞', '投資', 'MICA分析'];
 
   return (
     <main style={{ 
@@ -84,6 +84,35 @@ export default function ArticlesPage() {
       color: '#ffffff',
       fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
     }}>
+      {/* Structured Data - CollectionPage */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'CollectionPage',
+            name: '文章列表 - CryptoA8King',
+            description: '專業的加密貨幣投資諮詢、市場分析和 DeFi 指南文章',
+            url: 'https://crypto-consult-seven.vercel.app/articles',
+            mainEntity: {
+              '@type': 'ItemList',
+              numberOfItems: allArticles.length,
+              itemListElement: allArticles.map((article, index) => ({
+                '@type': 'ListItem',
+                position: index + 1,
+                item: {
+                  '@type': 'Article',
+                  name: article.title,
+                  url: `https://crypto-consult-seven.vercel.app/articles/${article.slug}`,
+                  description: article.summary || article.excerpt,
+                  articleSection: article.category
+                }
+              }))
+            }
+          })
+        }}
+      />
+      
       {/* Header */}
       <header style={{ 
         background: '#161b22', 
@@ -109,10 +138,9 @@ export default function ArticlesPage() {
             CryptoA8King
           </Link>
           <nav style={{ display: 'flex', gap: '2rem' }}>
-            <Link href="/" style={{ color: '#8b949e', textDecoration: 'none' }}>首页</Link>
+            <Link href="/" style={{ color: '#8b949e', textDecoration: 'none' }}>首頁</Link>
             <Link href="/articles" style={{ color: '#f7931a', textDecoration: 'none' }}>文章</Link>
             <Link href="/market" style={{ color: '#8b949e', textDecoration: 'none' }}>行情</Link>
-            <Link href="/consult" style={{ color: '#8b949e', textDecoration: 'none' }}>咨询</Link>
           </nav>
         </div>
       </header>
@@ -238,7 +266,7 @@ export default function ArticlesPage() {
                     marginBottom: '1rem',
                     lineHeight: 1.6
                   }}>
-                    {article.summary}
+                    {article.summary || article.excerpt}
                   </p>
                   
                   <div style={{ 
@@ -248,7 +276,7 @@ export default function ArticlesPage() {
                     fontSize: '0.8rem'
                   }}>
                     <span>✍️ {article.author}</span>
-                    <span>📅 {formatDate(article.created_at)}</span>
+                    <span>📅 {formatDate(article.created_at || article.published_at)}</span>
                   </div>
                 </div>
               </article>
@@ -264,7 +292,7 @@ export default function ArticlesPage() {
             color: '#6e7681' 
           }}>
             <div style={{ fontSize: '2rem', marginBottom: '1rem' }}>📭</div>
-            没有找到相关文章
+            沒有找到相關文章
           </div>
         )}
       </section>

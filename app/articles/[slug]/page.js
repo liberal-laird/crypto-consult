@@ -17,7 +17,7 @@ export default function ArticleDetailPage() {
     async function fetchArticle() {
       try {
         const res = await fetch(`/api/articles/${slug}`);
-        if (!res.ok) throw new Error('Article not found');
+        if (!res.ok) throw new Error('文章未找到');
         const data = await res.json();
         setArticle(data);
       } catch (err) {
@@ -29,6 +29,49 @@ export default function ArticleDetailPage() {
     
     fetchArticle();
   }, [slug]);
+
+  // Add structured data when article is loaded
+  useEffect(() => {
+    if (article) {
+      const schema = {
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        headline: article.title,
+        description: article.excerpt,
+        author: {
+          '@type': 'Organization',
+          name: 'CryptoA8King',
+          url: 'https://crypto-consult-seven.vercel.app'
+        },
+        publisher: {
+          '@type': 'Organization',
+          name: 'CryptoA8King',
+          logo: {
+            '@type': 'ImageObject',
+            url: 'https://crypto-consult-seven.vercel.app/icon.svg'
+          }
+        },
+        datePublished: article.publishedAt,
+        dateModified: article.rewrittenAt || article.publishedAt,
+        mainEntityOfPage: {
+          '@type': 'WebPage',
+          '@id': `https://crypto-consult-seven.vercel.app/articles/${article.slug}`
+        },
+        wordCount: article.wordCount,
+        articleSection: '加密貨幣',
+        inLanguage: 'zh-TW'
+      };
+      
+      const script = document.createElement('script');
+      script.type = 'application/ld+json';
+      script.text = JSON.stringify(schema);
+      document.head.appendChild(script);
+      
+      return () => {
+        document.head.removeChild(script);
+      };
+    }
+  }, [article]);
 
   if (loading) {
     return (
@@ -87,7 +130,7 @@ export default function ArticleDetailPage() {
   const formatDate = (dateString) => {
     if (!dateString) return '';
     try {
-      return new Date(dateString).toLocaleDateString('zh-CN', {
+      return new Date(dateString).toLocaleDateString('zh-TW', {
         year: 'numeric',
         month: 'long',
         day: 'numeric'
@@ -129,7 +172,7 @@ export default function ArticleDetailPage() {
             CryptoA8King
           </Link>
           <nav style={{ display: 'flex', gap: '2rem' }}>
-            <Link href="/" style={{ color: '#8b949e', textDecoration: 'none' }}>首页</Link>
+            <Link href="/" style={{ color: '#8b949e', textDecoration: 'none' }}>首頁</Link>
             <Link href="/articles" style={{ color: '#f7931a', textDecoration: 'none' }}>文章</Link>
             <Link href="/market" style={{ color: '#8b949e', textDecoration: 'none' }}>行情</Link>
           </nav>
@@ -137,17 +180,13 @@ export default function ArticleDetailPage() {
       </header>
 
       <article style={{ maxWidth: '800px', margin: '0 auto', padding: '2rem' }}>
-        {/* Back Link */}
-        <Link 
-          href="/articles" 
-          style={{ 
-            color: '#8b949e', 
-            textDecoration: 'none', 
-            display: 'inline-block', 
-            marginBottom: '1.5rem',
-            fontSize: '0.95rem'
-          }}
-        >
+        <Link href="/articles" style={{ 
+          color: '#8b949e', 
+          textDecoration: 'none', 
+          display: 'inline-block', 
+          marginBottom: '1.5rem',
+          fontSize: '0.95rem'
+        }}>
           ← 返回文章列表
         </Link>
 

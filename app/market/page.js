@@ -2,7 +2,7 @@ import Link from 'next/link';
 import MarketData from '../../components/MarketData';
 
 export const metadata = {
-  title: '即時行情 - CryptoConsult',
+  title: '即時行情 - CryptoA8King',
   description: '加密貨幣即時價格、24小時漲跌、市值排行 - Backpack Exchange 數據源',
 };
 
@@ -12,7 +12,7 @@ export default function MarketPage() {
       {/* Header */}
       <header className="header">
         <div className="header-content">
-          <Link href="/" className="logo">CryptoConsult</Link>
+          <Link href="/" className="logo">CryptoA8King</Link>
           <nav className="nav">
             <Link href="/">首頁</Link>
             <Link href="/articles">文章</Link>
@@ -44,7 +44,7 @@ export default function MarketPage() {
 
       <footer className="footer">
         <div className="footer-bottom">
-          <p>© 2024 CryptoConsult. All rights reserved.</p>
+          <p>© 2024 CryptoA8King. All rights reserved.</p>
         </div>
       </footer>
     </main>

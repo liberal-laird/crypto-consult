@@ -126,7 +126,7 @@ export default function ArticleDetailPage() {
             color: '#f7931a', 
             textDecoration: 'none' 
           }}>
-            CryptoConsult
+            CryptoA8King
           </Link>
           <nav style={{ display: 'flex', gap: '2rem' }}>
             <Link href="/" style={{ color: '#8b949e', textDecoration: 'none' }}>首页</Link>
@@ -289,7 +289,7 @@ export default function ArticleDetailPage() {
         color: '#6e7681',
         fontSize: '0.9rem'
       }}>
-        <p>© 2024 CryptoConsult. All rights reserved.</p>
+        <p>© 2024 CryptoA8King. All rights reserved.</p>
       </footer>
     </main>
   );

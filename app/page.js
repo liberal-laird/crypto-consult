@@ -72,7 +72,7 @@ export default function Home() {
             color: '#f7931a',
             textDecoration: 'none'
           }}>
-            CryptoConsult
+            CryptoA8King
           </Link>
           <nav style={{ display: 'flex', gap: '2rem' }}>
             <Link href="/" style={{ color: '#8b949e', textDecoration: 'none' }}>首頁</Link>
@@ -232,7 +232,7 @@ export default function Home() {
           gap: '2rem'
         }}>
           <div>
-            <h4 style={{ marginBottom: '1rem' }}>CryptoConsult</h4>
+            <h4 style={{ marginBottom: '1rem' }}>CryptoA8King</h4>
             <p style={{ color: '#8b949e' }}>
               專業的加密貨幣金融諮詢服務平台
             </p>
@@ -257,7 +257,7 @@ export default function Home() {
           color: '#8b949e',
           fontSize: '0.9rem'
         }}>
-          <p>© 2024 CryptoConsult. All rights reserved.</p>
+          <p>© 2024 CryptoA8King. All rights reserved.</p>
           <p style={{ marginTop: '0.5rem', fontSize: '0.85rem' }}>
             投資有風險，入市需謹慎。本站內容不構成任何投資建議。
           </p>

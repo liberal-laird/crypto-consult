@@ -30,7 +30,7 @@ export default function ArticlesPage() {
       slug: 'bitcoin-halving-2024',
       summary: '深入分析比特币减半的历史规律、价格走势以及对2024年减半的预测。',
       category: '比特币',
-      author: 'CryptoConsult',
+      author: 'CryptoA8King',
       created_at: '2024-01-15',
       isLocal: true
     },
@@ -40,7 +40,7 @@ export default function ArticlesPage() {
       slug: 'defi-guide-beginners',
       summary: '全面介绍 DeFi（去中心化金融）的概念、主要协议和投资机会。',
       category: 'DeFi',
-      author: 'CryptoConsult',
+      author: 'CryptoA8King',
       created_at: '2024-01-20',
       isLocal: true
     },
@@ -50,7 +50,7 @@ export default function ArticlesPage() {
       slug: 'layer2-scaling-solutions',
       summary: '比较分析主流 Layer 2 扩容方案，包括闪电网络、Arbitrum、Optimism 等。',
       category: '技术',
-      author: 'CryptoConsult',
+      author: 'CryptoA8King',
       created_at: '2024-01-25',
       isLocal: true
     }
@@ -106,7 +106,7 @@ export default function ArticlesPage() {
             color: '#f7931a', 
             textDecoration: 'none' 
           }}>
-            CryptoConsult
+            CryptoA8King
           </Link>
           <nav style={{ display: 'flex', gap: '2rem' }}>
             <Link href="/" style={{ color: '#8b949e', textDecoration: 'none' }}>首页</Link>
@@ -279,7 +279,7 @@ export default function ArticlesPage() {
         color: '#6e7681',
         fontSize: '0.9rem'
       }}>
-        <p>© 2024 CryptoConsult. All rights reserved.</p>
+        <p>© 2024 CryptoA8King. All rights reserved.</p>
       </footer>
     </main>
   );

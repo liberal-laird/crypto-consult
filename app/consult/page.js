@@ -36,7 +36,7 @@ export default function ConsultPage() {
       <main>
         <header className="header">
           <div className="header-content">
-            <Link href="/" className="logo">CryptoConsult</Link>
+            <Link href="/" className="logo">CryptoA8King</Link>
             <nav className="nav">
               <Link href="/">首頁</Link>
               <Link href="/articles">文章</Link>
@@ -64,7 +64,7 @@ export default function ConsultPage() {
     <main>
       <header className="header">
         <div className="header-content">
-          <Link href="/" className="logo">CryptoConsult</Link>
+          <Link href="/" className="logo">CryptoA8King</Link>
           <nav className="nav">
             <Link href="/">首頁</Link>
             <Link href="/articles">文章</Link>
@@ -203,7 +203,7 @@ export default function ConsultPage() {
 
       <footer className="footer">
         <div className="footer-bottom">
-          <p>© 2024 CryptoConsult. All rights reserved.</p>
+          <p>© 2024 CryptoA8King. All rights reserved.</p>
         </div>
       </footer>
     </main>

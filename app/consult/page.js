@@ -3,17 +3,6 @@
 import { useState } from 'react';
 import Link from 'next/link';
 
-export const metadata = {
-  title: '專業諮詢 - CryptoA8King',
-  description: '專業的加密貨幣投資諮詢服務。投資策略、風險管理、DeFi協議使用、稅務合規諮詢等一對一專業服務。',
-  keywords: [
-    '加密貨幣諮詢',
-    '比特幣投資諮詢',
-    '加密貨幣投資建議',
-    '風險管理諮詢',
-    'DeFi 諮詢'
-  ]
-};
 
 export default function ConsultPage() {
   const [formData, setFormData] = useState({

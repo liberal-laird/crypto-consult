@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 
@@ -224,70 +224,71 @@ export default function ArticleDetailPage() {
           <span>📝 {article.wordCount} 字</span>
         </div>
 
-        {/* Content */}
+        {/* Content with Ads */}
         <div style={{ 
           lineHeight: 1.9, 
           fontSize: '1.05rem',
           color: '#d0d7de'
         }}>
           {Array.isArray(article.content) ? (
-            article.content.map((item, index) => {
-              switch (item.type) {
-                case 'h2':
-                  return (
-                    <h2 key={index} style={{ 
-                      fontSize: '1.4rem', 
-                      marginTop: '2rem', 
-                      marginBottom: '1rem',
-                      color: '#f7931a',
-                      fontWeight: 600
-                    }}>
-                      {item.text}
-                    </h2>
-                  );
-                case 'list':
-                  return (
-                    <li key={index} style={{ 
-                      marginLeft: '1.5rem', 
-                      marginBottom: '0.5rem',
-                      color: '#d0d7de'
-                    }}>
-                      {item.text}
-                    </li>
-                  );
-                default:
-                  return (
-                    <p key={index} style={{ marginBottom: '1rem' }}>
-                      {item.text}
-                    </p>
-                  );
-              }
-            })
+            <>
+              {article.content.map((item, index) => {
+                // 在文章中间插入广告 (内容长度超过6段时)
+                const showAd = article.content.length > 6 && index === Math.floor(article.content.length / 2);
+                
+                return (
+                  <React.Fragment key={index}>
+                    {index === showAd && (
+                      <div style={{ margin: '2rem 0' }}>
+                        <ins
+                          className="adsbygoogle"
+                          style={{ display: 'block' }}
+                          data-ad-client="ca-pub-4522670236044605"
+                          data-ad-slot="7309209376"
+                          data-ad-format="auto"
+                          data-full-width-responsive="true"
+                        />
+                      </div>
+                    )}
+                    {item.type === 'h2' ? (
+                      <h2 style={{ 
+                        fontSize: '1.4rem', 
+                        marginTop: '2rem', 
+                        marginBottom: '1rem',
+                        color: '#f7931a',
+                        fontWeight: 600
+                      }}>
+                        {item.text}
+                      </h2>
+                    ) : item.type === 'list' ? (
+                      <li style={{ 
+                        marginLeft: '1.5rem', 
+                        marginBottom: '0.5rem',
+                        color: '#d0d7de'
+                      }}>
+                        {item.text}
+                      </li>
+                    ) : (
+                      <p style={{ marginBottom: '1rem' }}>{item.text}</p>
+                    )}
+                  </React.Fragment>
+                );
+              })}
+              {/* 广告脚本 */}
+              <script
+                async
+                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4522670236044605"
+                crossOrigin="anonymous"
+              />
+              <script
+                dangerouslySetInnerHTML={{
+                  __html: '(adsbygoogle = window.adsbygoogle || []).push({});'
+                }}
+              />
+            </>
           ) : (
             <p style={{ whiteSpace: 'pre-wrap' }}>{article.content}</p>
           )}
-        </div>
-
-        {/* Google Adsense */}
-        <div style={{ marginTop: '2rem' }}>
-          <script
-            async
-            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4522670236044605"
-            crossOrigin="anonymous"
-          />
-          <ins
-            className="adsbygoogle"
-            style={{ display: 'block' }}
-            data-ad-client="ca-pub-4522670236044605"
-            data-ad-slot="7309209376"
-            data-ad-format="auto"
-            data-full-width-responsive="true"
-          />
-          <script
-            dangerouslySetInnerHTML={{
-              __html: '(adsbygoogle = window.adsbygoogle || []).push({});'
-            }}
-          />
         </div>
 
         {/* Divider */}

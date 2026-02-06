@@ -1,5 +1,11 @@
 import './globals.css';
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5
+};
+
 export const metadata = {
   title: {
     default: 'CryptoA8King - 加密貨幣金融諮詢平台',
@@ -59,11 +65,6 @@ export const metadata = {
     description: '專業的加密貨幣投資諮詢、市場分析和 DeFi 指南',
     images: ['/og-image.png'],
     creator: '@cryptoa8king'
-  },
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 5
   },
   verification: {
     google: 'google-site-verification-code', // Replace with actual code

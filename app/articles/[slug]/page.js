@@ -1,8 +1,8 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import './globals.css';
 
 async function getArticle(slug) {
-  // Sample data - in production, fetch from database
   const articles = {
     'bitcoin-halving-2024': {
       title: '2024年比特币减半解读：历史数据与未来展望',
@@ -12,31 +12,37 @@ async function getArticle(slug) {
       tags: ['比特币', '减半', 'BTC', '2024'],
       author: 'CryptoConsult',
       created_at: '2024-01-15',
+      updated_at: '2024-01-15',
+      readTime: '8 分钟',
       content: `# 比特币减半深度解析
 
 ## 什么是比特币减半？
 
 比特币减半（Halving）是指比特币网络每产生210,000个区块后，区块奖励减半一次的事件。这大约每4年发生一次。
 
+减半是比特币协议中最重要的事件之一，它直接控制了比特币的供应量，确保比特币最终总量不会超过2100万枚。
+
 ## 历史减半数据
 
 ### 第一次减半 (2012年11月)
-- 区块奖励: 50 BTC → 25 BTC
-- 减半前价格: ~$12
-- 减半后1年最高: ~$1,100
-- 涨幅: ~9200%
+- **区块奖励**: 50 BTC → 25 BTC
+- **减半前价格**: ~$12
+- **减半后1年最高**: ~$1,100
+- **涨幅**: ~9200%
 
 ### 第二次减半 (2016年7月)
-- 区块奖励: 25 BTC → 12.5 BTC
-- 减半前价格: ~$650
-- 减半后1年最高: ~$19,000
-- 涨幅: ~2900%
+- **区块奖励**: 25 BTC → 12.5 BTC
+- **减半前价格**: ~$650
+- **减半后1年最高**: ~$19,000
+- **涨幅**: ~2900%
 
 ### 第三次减半 (2020年5月)
-- 区块奖励: 12.5 BTC → 6.25 BTC
-- 减半前价格: ~$8,500
-- 减半后1年最高: ~$64,000
-- 涨幅: ~750%
+- **区块奖励**: 12.5 BTC → 6.25 BTC
+- **减半前价格**: ~$8,500
+- **减半后1年最高**: ~$64,000
+- **涨幅**: ~750%
+
+> 💡 **历史数据显示**，每次减半后比特币价格都创下了历史新高，但这不代表未来也会如此。
 
 ## 2024年减半展望
 
@@ -44,14 +50,45 @@ async function getArticle(slug) {
 预计在2024年4-5月发生
 
 ### 关键因素
-1. **矿工收益减半** - 矿工收益减少，可能导致部分矿工退出
-2. **供给减少** - 流通中的新 BTC 减少
-3. **机构需求** - ETF 等产品带来的机构资金
+
+1. **矿工收益减半**
+   - 矿工收益减少约50%
+   - 可能导致部分效率较低的矿工退出网络
+   - 算力可能会经历短期波动
+
+2. **供给减少**
+   - 流通中的新 BTC 减少50%
+   - 每日新增供应从900 BTC降至450 BTC
+   - 供给减少通常会推高价格
+
+3. **机构需求**
+   - ETF 等产品带来的机构资金持续流入
+   - 贝莱德、富达等传统金融巨头入场
+   - 机构采用率创新高
 
 ### 风险提示
-- 历史数据不代表未来表现
-- 市场已部分定价减半预期
-- 宏观经济环境不确定性`
+
+- ⚠️ 历史数据不代表未来表现
+- ⚠️ 市场已部分定价减半预期
+- ⚠️ 宏观经济环境不确定性（利率政策、通胀等）
+- ⚠️ 监管政策可能影响走势
+
+## 投资建议
+
+### 适合人群
+- ✅ 长期持有者（HODLer）
+- ✅ 对比特币有深入了解
+- ✅ 能够承受短期波动
+
+### 注意事项
+- ❌ 不要投入超过你能承受损失的资金
+- ❌ 不要借债投资
+- ❌ 不要试图timing市场
+
+### 策略建议
+1. **定投策略**: 定期定额买入，平摊成本
+2. **分批建仓**: 在减半前6-12个月开始布局
+3. **长期持有**: 至少持有2-4年`
     },
     'defi-guide-beginners': {
       title: 'DeFi 入门指南：去中心化金融详解',
@@ -61,47 +98,83 @@ async function getArticle(slug) {
       tags: ['DeFi', '去中心化金融', 'Uniswap', 'Aave'],
       author: 'CryptoConsult',
       created_at: '2024-01-20',
+      readTime: '10 分钟',
       content: `# DeFi 入门指南
 
 ## 什么是 DeFi？
 
 DeFi（Decentralized Finance）是指建立在区块链上的去中心化金融系统，无需传统金融机构即可提供金融服务。
 
+### DeFi 的核心特点
+
+- 🔓 **无需许可**: 任何人只要有钱包就可以使用
+- 🌐 **无国界**: 全球通用，无需KYC
+- 💰 **高收益**: 相比传统金融，收益率通常更高
+- 🔄 **透明**: 所有交易在链上公开透明
+- ⚡ **快速**: 24/7 可用，无需银行工作 hours
+
 ## 主要 DeFi 协议
 
 ### 1. Uniswap - 去中心化交易所
+
+**官网**: https://uniswap.org
+
 - 自动做市商 (AMM) 机制
 - 无需订单簿
-- 流动性提供者赚取手续费
+- 流动性提供者赚取 0.3% 手续费
+
+**使用方法**:
+1. 连接钱包
+2. 选择交易对
+3. 输入数量
+4. 确认交易
 
 ### 2. Aave - 借贷协议
+
+**官网**: https://aave.com
+
 - 存入资产赚取利息
 - 抵押借款
-- 超额抵押机制
+- 超额抵押机制（清算风险）
+
+**利率模式**:
+- **稳定利率**: 固定利率，适合长期借款
+- **浮动利率**: 随市场波动
 
 ### 3. Compound - 借贷市场
+
+**官网**: https://compound.finance
+
 - 算法利率
 - 自动复利
 - 治理代币 COMP
 
 ### 4. MakerDAO - 稳定币
-- DAI 稳定币
+
+**官网**: https://makerdao.com
+
+- DAI 稳定币（软锚定1美元）
 - 超额抵押生成
-- 治理去中心化
+- 完全去中心化治理
 
 ## DeFi 风险
 
-1. **智能合约风险** - 代码漏洞
-2. **流动性风险** - 池子干涸
-3. **预言机风险** - 价格操纵
-4. **无常损失** - LP 面临的风险
+### 1. 智能合约风险
+- 代码漏洞可能导致资金损失
+- 选择经过审计的协议
+- 小额尝试，熟悉后再加大投入
 
-## 入门建议
+### 2. 流动性风险
+- 池子干涸时无法及时退出
+- 关注 TVL（总锁仓量）指标
 
-1. 从小资金开始
-2. 理解协议机制后再投资
-3. 分散风险
-4. 注意 Gas 费用`
+### 3. 预言机风险
+- 价格操纵攻击
+- Chainlink 是目前最可靠的预言机
+
+### 4. 无常损失 (Impermanent Loss)
+- LP 面临的最大风险
+- 资产波动导致潜在收益损失`
     },
     'layer2-scaling-solutions': {
       title: 'Layer 2 解决方案详解：比特币与以太坊扩容',
@@ -111,159 +184,130 @@ DeFi（Decentralized Finance）是指建立在区块链上的去中心化金融�
       tags: ['Layer2', '扩容', '闪电网络', 'Arbitrum', 'Rollup'],
       author: 'CryptoConsult',
       created_at: '2024-01-25',
+      readTime: '12 分钟',
       content: `# Layer 2 扩容方案详解
 
 ## 为什么需要 Layer 2？
 
-区块链 Layer 1 面临：
-- 吞吐量限制
-- 高 Gas 费用
-- 交易确认时间长
+区块链 Layer 1 面临的主要问题：
+
+| 问题 | 描述 | 影响 |
+|------|------|------|
+| 吞吐量限制 | TPS 有限 | 网络拥堵 |
+| 高 Gas 费用 | 交易成本高 | 小额交易不经济 |
+| 确认时间长 | 等待时间长 | 用户体验差 |
 
 ## 比特币 Layer 2
 
 ### 闪电网络 (Lightning Network)
+
+**官网**: https://lightning.network
+
 - 链下支付通道
-- 快速、低费用
-- 适用于小额支付
+- 快速、低费用（< 1美分）
+- 适用于小额、高频支付
+
+**工作原理**:
+1. 建立双向支付通道
+2. 链下多次交易
+3. 关闭通道时结算到主链
 
 ### Stacks
+
+**官网**: https://stacks.co
+
 - 智能合约层
 - 保留比特币安全性
-- 智能合约功能
+- 智能合约功能（Clarity 语言）
 
 ## 以太坊 Layer 2
 
-### Rollups 分类
+### Rollups 分类对比
 
-#### Optimistic Rollups
-- 欺诈证明 (7天挑战期)
-- 较低 Gas 费用
-- 代表：Arbitrum, Optimism
+| 类型 | 验证方式 | 提款时间 | 代表项目 |
+|------|---------|---------|---------|
+| Optimistic | 欺诈证明 | 7天 | Arbitrum, Optimism |
+| ZK | 零知识证明 | 即时 | zkSync, StarkNet |
 
-#### ZK Rollups
-- 零知识证明
-- 即时提款
-- 计算密集
-- 代表：zkSync, StarkNet, Polygon zkEVM
+### Optimistic Rollups
+
+**特点**:
+- ✅ 较低的计算成本
+- ✅ EVM 兼容性
+- ⚠️ 7天挑战期
+
+**代表项目**:
+- **Arbitrum**: https://arbitrum.io
+- **Optimism**: https://optimism.io
+
+### ZK Rollups
+
+**特点**:
+- ✅ 更高的安全性
+- ✅ 即时提款
+- ⚠️ 计算密集，成本高
+
+**代表项目**:
+- **zkSync**: https://zksync.io
+- **StarkNet**: https://starknet.io
+- **Polygon zkEVM**: https://polygon.technology
 
 ## Layer 2 投资机会
 
-1. **空投预期** - 治理代币潜在空投
-2. **生态项目** - 早期项目机会
-3. **基础设施** - 桥接服务、验证节点`
-    },
-    'stablecoins-comparison': {
-      title: '稳定币深度解析：USDT、USDC、DAI 哪家强？',
-      slug: 'stablecoins-comparison',
-      summary: '对比分析三大主流稳定币的机制、风险和适用场景。',
-      category: '稳定币',
-      tags: ['稳定币', 'USDT', 'USDC', 'DAI'],
-      author: 'CryptoConsult',
-      created_at: '2024-02-01',
-      content: `# 稳定币对比分析
+### 1. 空投预期
+- 治理代币潜在空投
+- 交互 Arbitrum、Optimism 等协议
 
-## 为什么需要稳定币？
+### 2. 生态项目
+- 早期项目机会
+- 关注 TVL 增长
 
-加密货币市场波动剧烈，稳定币提供了：
-- 避险工具
-- 交易媒介
-- DeFi 基础设施
-
-## 主流稳定币对比
-
-### USDT (Tether)
-- 发行方: Tether Limited
-- 机制: 法币抵押（美元）
-- 优点: 流动性最好
-- 风险: 透明度争议、监管风险
-
-### USDC (USD Coin)
-- 发行方: Circle
-- 机制: 法币抵押（美元）
-- 优点: 监管合规、透明度高
-- 风险: 对银行系统的依赖
-
-### DAI
-- 发行方: MakerDAO
-- 机制: 加密货币超额抵押
-- 优点: 去中心化、抗审查
-- 风险: 智能合约风险、抵押品波动
-
-## 适用场景
-
-- **交易对**: USDT/USDC 最佳
-- **DeFi**: DAI 首选
-- **大额转账**: USDC（合规优势）
-- **跨境支付**: USDT（覆盖面广）`
-    },
-    'nft-investment-guide': {
-      title: 'NFT 投资指南：如何在熊市中寻找价值',
-      slug: 'nft-investment-guide',
-      summary: '熊市中的 NFT 投资策略，蓝筹项目筛选标准和风险管理。',
-      category: 'NFT',
-      tags: ['NFT', '蓝筹', '投资'],
-      author: 'CryptoConsult',
-      created_at: '2024-02-05',
-      content: `# NFT 投资指南
-
-## 熊市生存法则
-
-### 1. 关注蓝筹项目
-- BAYC、Azuki、Pudgy Penguins
-- 强大的社区和路线图
-- 流动性相对较好
-
-### 2. 关注 Utility
-- 实用价值 > 纯收藏
-- 游戏、NFT-Fi、会员权益
-
-### 3. 风险控制
-- 只投资能承受损失的资金
-- 分散投资
-- 设置止损位
-
-## 项目筛选标准
-
-1. 团队背景和声誉
-2. 社区活跃度
-3. 路线图清晰度
-4. 长期发展规划
-5. 版税机制设计`
-    },
-    'crypto-tax-guide': {
-      title: '加密货币税务指南：全球主要国家税务政策',
-      slug: 'crypto-tax-guide',
-      summary: '美国、欧盟、新加坡、香港等地加密货币税务政策详解。',
-      category: '合规',
-      tags: ['税务', '合规', '政策'],
-      author: 'CryptoConsult',
-      created_at: '2024-02-10',
-      content: `# 加密货币税务指南
-
-## 美国
-- IRS 将加密货币视为财产
-- 资本利得税适用
-- 需申报交易记录
-
-## 欧盟
-- MiCA 法规统一定义
-- 资本利得税因国而异
-- DeFi 规则逐步明确
-
-## 新加坡
-- 个人持币免税
-- 交易收益可能征税
-- 相对友好的监管环境
-
-## 香港
-- 持币不征税
-- 交易需申报
-- 逐步建立监管框架`
+### 3. 基础设施
+- 桥接服务
+- 验证节点`
     }
   };
 
   return articles[slug] || null;
+}
+
+function parseContent(content) {
+  const lines = content.split('\n');
+  const result = [];
+  let i = 0;
+  
+  while (i < lines.length) {
+    const line = lines[i].trim();
+    
+    if (line.startsWith('# ')) {
+      result.push({ type: 'h1', text: line.replace('# ', '') });
+    } else if (line.startsWith('## ')) {
+      result.push({ type: 'h2', text: line.replace('## ', '') });
+    } else if (line.startsWith('### ')) {
+      result.push({ type: 'h3', text: line.replace('### ', '') });
+    } else if (line.startsWith('> ')) {
+      result.push({ type: 'quote', text: line.replace('> ', '') });
+    } else if (line.startsWith('- **')) {
+      result.push({ type: 'list-item-bold', text: line.replace('- **', '').replace('**', '') });
+    } else if (line.startsWith('- ')) {
+      result.push({ type: 'list-item', text: line.replace('- ', '') });
+    } else if (line.match(/^\d+\. /)) {
+      result.push({ type: 'list-number', text: line.replace(/^\d+\. /, '') });
+    } else if (line.match(/^\| .* \|$/)) {
+      // Table row
+      result.push({ type: 'table-row', text: line });
+    } else if (line === '---') {
+      result.push({ type: 'divider' });
+    } else if (line.includes('✅') || line.includes('❌') || line.includes('⚠️')) {
+      result.push({ type: 'checklist', text: line });
+    } else if (line.trim() !== '') {
+      result.push({ type: 'paragraph', text: line });
+    }
+    
+    i++;
+  }
+  
+  return result;
 }
 
 export async function generateStaticParams() {
@@ -286,59 +330,91 @@ export default async function ArticlePage({ params }) {
     notFound();
   }
 
+  const parsedContent = parseContent(article.content);
+
   return (
-    <main>
+    <div style={{ minHeight: '100vh', background: '#0d1117', color: '#ffffff', fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif' }}>
       {/* Header */}
-      <header className="header">
-        <div className="header-content">
-          <Link href="/" className="logo">CryptoConsult</Link>
-          <nav className="nav">
-            <Link href="/">首页</Link>
-            <Link href="/articles">文章</Link>
-            <Link href="/market">行情</Link>
-            <Link href="/consult">咨询</Link>
+      <header style={{ background: '#161b22', borderBottom: '1px solid #30363d', padding: '1rem 2rem', position: 'sticky', top: 0, zIndex: 100 }}>
+        <div style={{ maxWidth: '800px', margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <Link href="/" style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#f7931a', textDecoration: 'none' }}>
+            CryptoConsult
+          </Link>
+          <nav style={{ display: 'flex', gap: '2rem' }}>
+            <Link href="/" style={{ color: '#8b949e', textDecoration: 'none' }}>首页</Link>
+            <Link href="/articles" style={{ color: '#8b949e', textDecoration: 'none' }}>文章</Link>
+            <Link href="/market" style={{ color: '#8b949e', textDecoration: 'none' }}>行情</Link>
+            <Link href="/consult" style={{ color: '#8b949e', textDecoration: 'none' }}>咨询</Link>
           </nav>
         </div>
       </header>
 
-      {/* Article */}
-      <article className="article-page">
-        <Link href="/articles" style={{ color: 'var(--text-secondary)', textDecoration: 'none', display: 'inline-block', marginBottom: '1rem' }}>
+      {/* Article Content */}
+      <article style={{ maxWidth: '800px', margin: '0 auto', padding: '2rem' }}>
+        {/* Back Link */}
+        <Link href="/articles" style={{ color: '#8b949e', textDecoration: 'none', display: 'inline-block', marginBottom: '1.5rem', fontSize: '0.95rem' }}>
           ← 返回文章列表
         </Link>
-        
-        <span className="article-category">{article.category}</span>
-        <h1>{article.title}</h1>
-        
-        <div className="article-meta">
-          <span>作者: {article.author}</span>
-          <span>发布时间: {article.created_at}</span>
-        </div>
-        
-        <div className="tags">
-          {article.tags?.map((tag) => (
-            <span key={tag} className="tag">{tag}</span>
-          ))}
-        </div>
 
-        <div className="content" style={{ marginTop: '2rem' }}>
-          {article.content.split('\n').map((line, index) => {
-            if (line.startsWith('# ')) {
-              return <h1 key={index}>{line.replace('# ', '')}</h1>;
-            } else if (line.startsWith('## ')) {
-              return <h2 key={index}>{line.replace('## ', '')}</h2>;
-            } else if (line.startsWith('### ')) {
-              return <h3 key={index}>{line.replace('### ', '')}</h3>;
-            } else if (line.startsWith('- ')) {
-              return <li key={index}>{line.replace('- ', '')}</li>;
-            } else if (line.match(/^\d+\./)) {
-              return <li key={index}>{line}</li>;
-            } else if (line.match(/^\*\*(.+?)\*\*/)) {
-              return <p key={index}><strong>{line.replace(/\*\*/g, '')}</strong></p>;
-            } else if (line.trim() === '') {
-              return <br key={index} />;
-            } else {
-              return <p key={index}>{line}</p>;
+        {/* Article Header */}
+        <header style={{ marginBottom: '2rem' }}>
+          <div style={{ display: 'flex', gap: '0.75rem', marginBottom: '1rem', flexWrap: 'wrap' }}>
+            <span style={{ background: 'rgba(247, 147, 26, 0.2)', color: '#f7931a', padding: '0.35rem 1rem', borderRadius: '20px', fontSize: '0.85rem' }}>
+              {article.category}
+            </span>
+          </div>
+          
+          <h1 style={{ fontSize: '2.25rem', lineHeight: 1.3, marginBottom: '1.5rem', fontWeight: 700 }}>
+            {article.title}
+          </h1>
+          
+          <p style={{ color: '#8b949e', fontSize: '0.95rem', marginBottom: '1.5rem', lineHeight: 1.6 }}>
+            {article.summary}
+          </p>
+
+          {/* Meta Info */}
+          <div style={{ display: 'flex', gap: '1.5rem', color: '#6e7681', fontSize: '0.9rem', marginBottom: '1.5rem' }}>
+            <span>✍️ {article.author}</span>
+            <span>📅 {article.created_at}</span>
+            <span>⏱️ {article.readTime || '5 分钟'}</span>
+          </div>
+
+          {/* Tags */}
+          <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+            {article.tags?.map((tag) => (
+              <span key={tag} style={{ background: 'rgba(98, 126, 234, 0.2)', color: '#627eea', padding: '0.3rem 0.85rem', borderRadius: '20px', fontSize: '0.85rem' }}>
+                #{tag}
+              </span>
+            ))}
+          </div>
+        </header>
+
+        {/* Article Body */}
+        <div className="content" style={{ lineHeight: 1.8, fontSize: '1.05rem' }}>
+          {parsedContent.map((item, index) => {
+            switch (item.type) {
+              case 'h1':
+                return <h1 key={index} style={{ fontSize: '1.85rem', marginTop: '2.5rem', marginBottom: '1rem', color: '#f7931a', fontWeight: 700 }}>{item.text}</h1>;
+              case 'h2':
+                return <h2 key={index} style={{ fontSize: '1.5rem', marginTop: '2rem', marginBottom: '0.75rem', fontWeight: 600 }}>{item.text}</h2>;
+              case 'h3':
+                return <h3 key={index} style={{ fontSize: '1.2rem', marginTop: '1.5rem', marginBottom: '0.5rem', fontWeight: 600 }}>{item.text}</h3>;
+              case 'paragraph':
+                return <p key={index} style={{ marginBottom: '1rem', color: '#d0d7de' }}>{item.text}</p>;
+              case 'quote':
+                return <blockquote key={index} style={{ borderLeft: '4px solid #f7931a', paddingLeft: '1.25rem', margin: '1.5rem 0', color: '#8b949e', fontStyle: 'italic' }}>{item.text}</blockquote>;
+              case 'list-item-bold':
+                return <li key={index} style={{ marginBottom: '0.5rem', marginLeft: '1.5rem', color: '#f7931a', fontWeight: 600 }}><span style={{ color: '#d0d7de', fontWeight: 400 }}>{item.text}</span></li>;
+              case 'list-item':
+                return <li key={index} style={{ marginBottom: '0.5rem', marginLeft: '1.5rem', color: '#d0d7de' }}>{item.text}</li>;
+              case 'list-number':
+                return <li key={index} style={{ marginBottom: '0.5rem', marginLeft: '1.5rem', color: '#d0d7de' }}>{item.text}</li>;
+              case 'divider':
+                return <hr key={index} style={{ border: 'none', borderTop: '1px solid #30363d', margin: '2rem 0' }} />;
+              case 'checklist':
+                return <div key={index} style={{ marginBottom: '0.75rem', paddingLeft: '0.5rem' }}>{item.text}</div>;
+              default:
+                return null;
             }
           })}
         </div>
@@ -348,22 +424,30 @@ export default async function ArticlePage({ params }) {
           marginTop: '3rem', 
           padding: '1.5rem', 
           background: 'rgba(255, 193, 7, 0.1)', 
-          borderRadius: '8px',
-          border: '1px solid var(--warning)',
-          fontSize: '0.9rem',
-          color: 'var(--text-secondary)'
+          borderRadius: '12px',
+          border: '1px solid #ffc107',
+          fontSize: '0.9rem'
         }}>
-          <strong style={{ color: 'var(--warning)' }}>免责声明：</strong>
-          本文仅供学习和参考，不构成任何投资建议。加密货币投资风险极高，请务必 DYOR（自行研究）并只投资你能承受损失的资金。
+          <strong style={{ color: '#ffc107', display: 'block', marginBottom: '0.5rem' }}>⚠️ 免责声明</strong>
+          <p style={{ color: '#8b949e', margin: 0 }}>
+            本文仅供学习和参考，不构成任何投资建议。加密货币投资风险极高，请务必 DYOR（自行研究）并只投资你能承受损失的资金。过往表现不代表未来收益。
+          </p>
+        </div>
+
+        {/* Share */}
+        <div style={{ marginTop: '2rem', paddingTop: '2rem', borderTop: '1px solid #30363d' }}>
+          <p style={{ color: '#8b949e', marginBottom: '1rem' }}>分享文章</p>
+          <div style={{ display: 'flex', gap: '0.75rem' }}>
+            <button style={{ padding: '0.5rem 1rem', background: '#1f6feb', color: 'white', border: 'none', borderRadius: '6px', cursor: 'pointer' }}>Twitter</button>
+            <button style={{ padding: '0.5rem 1rem', background: '#238636', color: 'white', border: 'none', borderRadius: '6px', cursor: 'pointer' }}>复制链接</button>
+          </div>
         </div>
       </article>
 
       {/* Footer */}
-      <footer className="footer">
-        <div className="footer-bottom" style={{ marginTop: 0, paddingTop: '2rem' }}>
-          <p>© 2024 CryptoConsult. All rights reserved.</p>
-        </div>
+      <footer style={{ background: '#161b22', borderTop: '1px solid #30363d', padding: '2rem', marginTop: '3rem', textAlign: 'center', color: '#6e7681', fontSize: '0.9rem' }}>
+        <p>© 2024 CryptoConsult. All rights reserved.</p>
       </footer>
-    </main>
+    </div>
   );
 }

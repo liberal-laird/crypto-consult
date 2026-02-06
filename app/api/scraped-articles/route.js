@@ -3,11 +3,18 @@ import fs from 'fs';
 import path from 'path';
 
 const ARTICLES_FILE = path.join(process.cwd(), '..', '..', '.openclaw', 'workspace', 'scrapers', 'articles.json');
+// Fallback to public folder (copied during deployment)
+const PUBLIC_FILE = path.join(process.cwd(), 'public', 'articles.json');
 
 export async function GET() {
   try {
-    // Check if articles file exists
-    if (!fs.existsSync(ARTICLES_FILE)) {
+    // Check both paths
+    let articlesFile = PUBLIC_FILE;
+    if (!fs.existsSync(articlesFile)) {
+      articlesFile = ARTICLES_FILE;
+    }
+    
+    if (!fs.existsSync(articlesFile)) {
       return NextResponse.json({ 
         articles: [],
         message: 'No articles scraped yet' 
@@ -15,7 +22,7 @@ export async function GET() {
     }
     
     // Read scraped articles
-    const data = fs.readFileSync(ARTICLES_FILE, 'utf8');
+    const data = fs.readFileSync(articlesFile, 'utf8');
     const articles = JSON.parse(data);
     
     // Transform for display

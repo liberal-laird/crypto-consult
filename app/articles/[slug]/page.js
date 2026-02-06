@@ -319,7 +319,7 @@ export async function generateStaticParams() {
     'crypto-tax-guide'
   ];
   
-  return articles.map((slug) => ({ slug }));
+  return articles.map((slug) => ({ params: { slug } }));
 }
 
 export default async function ArticlePage({ params }) {

@@ -1,28 +1,56 @@
 import Link from 'next/link';
 
+// Backpack API client - works without API key for public data
+async function fetchBackpackTicker(symbol) {
+  try {
+    const response = await fetch(
+      `https://api.backpack.exchange/api/v1/ticker?symbol=${symbol}`,
+      { next: { revalidate: 60 } } // Cache for 60 seconds
+    );
+    if (response.ok) {
+      return await response.json();
+    }
+  } catch (error) {
+    console.error(`Failed to fetch ${symbol}:`, error);
+  }
+  return null;
+}
+
 async function getMarketData() {
-  // In production, fetch from Backpack API
-  // const client = new BackpackClient();
-  // const tickers = await client.getAllTickers();
-  
-  // Demo data
-  return [
-    { symbol: 'BTC', name: 'Bitcoin', price: 67842, change24h: 2.34, volume24h: 28500000000, marketCap: 1320000000000 },
-    { symbol: 'ETH', name: 'Ethereum', price: 3421, change24h: 1.87, volume24h: 15200000000, marketCap: 411000000000 },
-    { symbol: 'BNB', name: 'Binance Coin', price: 592, change24h: 0.95, volume24h: 1800000000, marketCap: 87000000000 },
-    { symbol: 'SOL', name: 'Solana', price: 178, change24h: 5.67, volume24h: 5200000000, marketCap: 78000000000 },
-    { symbol: 'XRP', name: 'Ripple', price: 0.62, change24h: -0.45, volume24h: 1200000000, marketCap: 34000000000 },
-    { symbol: 'ADA', name: 'Cardano', price: 0.68, change24h: 1.23, volume24h: 450000000, marketCap: 24000000000 },
-    { symbol: 'AVAX', name: 'Avalanche', price: 42.5, change24h: 3.21, volume24h: 680000000, marketCap: 17000000000 },
-    { symbol: 'DOT', name: 'Polkadot', price: 8.92, change24h: 0.78, volume24h: 320000000, marketCap: 12500000000 },
-    { symbol: 'MATIC', name: 'Polygon', price: 1.23, change24h: -1.45, volume24h: 520000000, marketCap: 11500000000 },
-    { symbol: 'LINK', name: 'Chainlink', price: 18.5, change24h: 2.11, volume24h: 780000000, marketCap: 10900000000 },
-    { symbol: 'UNI', name: 'Uniswap', price: 9.85, change24h: 3.45, volume24h: 420000000, marketCap: 7400000000 },
-    { symbol: 'ATOM', name: 'Cosmos', price: 12.3, change24h: -0.89, volume24h: 280000000, marketCap: 4800000000 },
-    { symbol: 'NEAR', name: 'NEAR Protocol', price: 8.45, change24h: 4.23, volume24h: 520000000, marketCap: 9500000000 },
-    { symbol: 'APT', name: 'Aptos', price: 14.2, change24h: 6.78, volume24h: 380000000, marketCap: 6200000000 },
-    { symbol: 'ARB', name: 'Arbitrum', price: 1.85, change24h: 2.56, volume24h: 680000000, marketCap: 4700000000 }
+  const symbols = [
+    'BTC_USDC', 'ETH_USDC', 'BNB_USDC', 'SOL_USDC',
+    'XRP_USDC', 'ADA_USDC', 'AVAX_USDC', 'DOT_USDC',
+    'MATIC_USDC', 'LINK_USDC', 'UNI_USDC', 'ATOM_USDC',
+    'NEAR_USDC', 'APT_USDC', 'ARB_USDC'
   ];
+
+  const coinNames = {
+    'BTC': 'Bitcoin', 'ETH': 'Ethereum', 'BNB': 'Binance Coin',
+    'SOL': 'Solana', 'XRP': 'Ripple', 'ADA': 'Cardano',
+    'AVAX': 'Avalanche', 'DOT': 'Polkadot', 'MATIC': 'Polygon',
+    'LINK': 'Chainlink', 'UNI': 'Uniswap', 'ATOM': 'Cosmos',
+    'NEAR': 'NEAR Protocol', 'APT': 'Aptos', 'ARB': 'Arbitrum'
+  };
+
+  // Fetch all tickers in parallel
+  const promises = symbols.map(async (symbol) => {
+    const ticker = await fetchBackpackTicker(symbol);
+    if (ticker) {
+      return {
+        symbol: symbol.replace('_USDC', ''),
+        name: coinNames[symbol.replace('_USDC', '')] || symbol.replace('_USDC', ''),
+        price: parseFloat(ticker.price) || 0,
+        change24h: parseFloat(ticker.priceChange24h) || 0,
+        volume24h: parseFloat(ticker.volume24h) || 0,
+        high24h: parseFloat(ticker.high24h) || 0,
+        low24h: parseFloat(ticker.low24h) || 0
+      };
+    }
+    return null;
+  });
+
+  const results = await Promise.all(promises);
+  return results.filter(Boolean);
 }
 
 function formatNumber(num) {
@@ -82,8 +110,8 @@ export default async function MarketPage() {
                 <th style={{ padding: '1rem', textAlign: 'left' }}>币种</th>
                 <th style={{ padding: '1rem', textAlign: 'right' }}>价格</th>
                 <th style={{ padding: '1rem', textAlign: 'right' }}>24h 涨跌</th>
-                <th style={{ padding: '1rem', textAlign: 'right' }}>24h 成交量</th>
-                <th style={{ padding: '1rem', textAlign: 'right' }}>市值</th>
+                <th style={{ padding: '1rem', textAlign: 'right' }}>24h 最高</th>
+                <th style={{ padding: '1rem', textAlign: 'right' }}>24h 最低</th>
               </tr>
             </thead>
             <tbody>
@@ -110,11 +138,11 @@ export default async function MarketPage() {
                   }}>
                     {coin.change24h >= 0 ? '+' : ''}{coin.change24h.toFixed(2)}%
                   </td>
-                  <td style={{ padding: '1rem', textAlign: 'right', color: 'var(--text-secondary)' }}>
-                    {formatNumber(coin.volume24h)}
+                  <td style={{ padding: '1rem', textAlign: 'right', color: 'var(--success)' }}>
+                    {formatPrice(coin.high24h)}
                   </td>
-                  <td style={{ padding: '1rem', textAlign: 'right', color: 'var(--text-secondary)' }}>
-                    {formatNumber(coin.marketCap)}
+                  <td style={{ padding: '1rem', textAlign: 'right', color: 'var(--danger)' }}>
+                    {formatPrice(coin.low24h)}
                   </td>
                 </tr>
               ))}
@@ -132,30 +160,30 @@ export default async function MarketPage() {
           <div className="feature-card">
             <div className="feature-icon">📊</div>
             <div style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>
-              $2.45T
+              {marketData.length}
             </div>
-            <div style={{ color: 'var(--text-secondary)' }}>全球加密货币市值</div>
+            <div style={{ color: 'var(--text-secondary)' }}>监控币种</div>
+          </div>
+          <div className="feature-card">
+            <div className="feature-icon">🔄</div>
+            <div style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>
+              60s
+            </div>
+            <div style={{ color: 'var(--text-secondary)' }}>自动刷新</div>
           </div>
           <div className="feature-card">
             <div className="feature-icon">📈</div>
             <div style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>
-              $85.2B
+              Backpack
             </div>
-            <div style={{ color: 'var(--text-secondary)' }}>24h 交易量</div>
+            <div style={{ color: 'var(--text-secondary)' }}>数据源</div>
           </div>
           <div className="feature-card">
             <div className="feature-icon">💹</div>
             <div style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>
-              52.3%
+              USDC
             </div>
-            <div style={{ color: 'var(--text-secondary)' }}>BTC 市占率</div>
-          </div>
-          <div className="feature-card">
-            <div className="feature-icon">📋</div>
-            <div style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>
-              {marketData.length}
-            </div>
-            <div style={{ color: 'var(--text-secondary)' }}>监控币种</div>
+            <div style={{ color: 'var(--text-secondary)' }}>计价单位</div>
           </div>
         </div>
 

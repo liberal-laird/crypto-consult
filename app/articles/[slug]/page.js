@@ -38,6 +38,31 @@ export default async function ArticlePage({ params }) {
 - 减半后1年最高: ~$64,000
 
 > 历史数据显示，每次减半后比特币价格都创下历史新高。`
+    },
+    'defi-guide-beginners': {
+      title: 'DeFi 入门指南：去中心化金融详解',
+      category: 'DeFi',
+      author: 'CryptoConsult',
+      created_at: '2024-01-20',
+      content: `# DeFi 入门指南
+
+## 什么是 DeFi？
+
+DeFi（Decentralized Finance）是指建立在区块链上的去中心化金融系统，无需传统金融机构即可提供金融服务。
+
+## 主要 DeFi 协议
+
+### Uniswap
+- 自动做市商 (AMM) 机制
+- 流动性提供者赚取手续费
+
+### Aave
+- 存入资产赚取利息
+- 抵押借款
+
+### MakerDAO
+- DAI 稳定币
+- 超额抵押生成`
     }
   };
   

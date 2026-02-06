@@ -1,10 +1,9 @@
 import Link from 'next/link';
+import MarketTicker from '../components/MarketTicker';
 
-// Server Component - fetches data directly
+// Server Component for articles
 async function getArticles() {
   try {
-    // In production, this would use the database
-    // For demo, return sample data
     return [
       {
         id: 1,
@@ -97,7 +96,6 @@ export default async function Home() {
             <Link href="/articles">文章</Link>
             <Link href="/market">行情</Link>
             <Link href="/consult">咨询</Link>
-            <Link href="/about">关于</Link>
           </nav>
         </div>
       </header>
@@ -119,61 +117,7 @@ export default async function Home() {
       </section>
 
       {/* Market Ticker */}
-      <div className="market-ticker">
-        <div className="ticker-content">
-          <div className="ticker-item">
-            <span className="ticker-symbol">BTC</span>
-            <span className="ticker-price">$67,842</span>
-            <span className="ticker-change">+2.34%</span>
-          </div>
-          <div className="ticker-item">
-            <span className="ticker-symbol">ETH</span>
-            <span className="ticker-price">$3,421</span>
-            <span className="ticker-change">+1.87%</span>
-          </div>
-          <div className="ticker-item">
-            <span className="ticker-symbol">BNB</span>
-            <span className="ticker-price">$592</span>
-            <span className="ticker-change">+0.95%</span>
-          </div>
-          <div className="ticker-item">
-            <span className="ticker-symbol">SOL</span>
-            <span className="ticker-price">$178</span>
-            <span className="ticker-change">+5.67%</span>
-          </div>
-          <div className="ticker-item">
-            <span className="ticker-symbol">XRP</span>
-            <span className="ticker-price">$0.62</span>
-            <span className="ticker-change negative">-0.45%</span>
-          </div>
-          <div className="ticker-item">
-            <span className="ticker-symbol">ADA</span>
-            <span className="ticker-price">$0.68</span>
-            <span className="ticker-change">+1.23%</span>
-          </div>
-          <div className="ticker-item">
-            <span className="ticker-symbol">AVAX</span>
-            <span className="ticker-price">$42.5</span>
-            <span className="ticker-change">+3.21%</span>
-          </div>
-          <div className="ticker-item">
-            <span className="ticker-symbol">DOT</span>
-            <span className="ticker-price">$8.92</span>
-            <span className="ticker-change">+0.78%</span>
-          </div>
-          {/* Repeat for continuous scroll */}
-          <div className="ticker-item">
-            <span className="ticker-symbol">BTC</span>
-            <span className="ticker-price">$67,842</span>
-            <span className="ticker-change">+2.34%</span>
-          </div>
-          <div className="ticker-item">
-            <span className="ticker-symbol">ETH</span>
-            <span className="ticker-price">$3,421</span>
-            <span className="ticker-change">+1.87%</span>
-          </div>
-        </div>
-      </div>
+      <MarketTicker />
 
       {/* Features */}
       <section className="section">

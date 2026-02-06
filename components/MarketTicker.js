@@ -3,74 +3,79 @@
 import { useState, useEffect } from 'react';
 
 const POPULAR_PAIRS = [
-  'BTC_USDC',
-  'ETH_USDC',
-  'BNB_USDC',
-  'SOL_USDC',
-  'XRP_USDC',
-  'ADA_USDC',
-  'AVAX_USDC',
-  'DOT_USDC',
-  'MATIC_USDC',
-  'LINK_USDC'
+  'BTC_USDC', 'ETH_USDC', 'BNB_USDC', 'SOL_USDC',
+  'XRP_USDC', 'ADA_USDC', 'AVAX_USDC', 'DOT_USDC'
 ];
+
+const COIN_NAMES = {
+  'BTC': 'Bitcoin', 'ETH': 'Ethereum', 'BNB': 'Binance Coin',
+  'SOL': 'Solana', 'XRP': 'Ripple', 'ADA': 'Cardano',
+  'AVAX': 'Avalanche', 'DOT': 'Polkadot'
+};
+
+const DEMO_DATA = {
+  'BTC': { price: 67842, change24h: 2.34 },
+  'ETH': { price: 3421, change24h: 1.87 },
+  'BNB': { price: 592, change24h: 0.95 },
+  'SOL': { price: 78.97, change24h: -14.09 },
+  'XRP': { price: 0.62, change24h: -0.45 },
+  'ADA': { price: 0.68, change24h: 1.23 },
+  'AVAX': { price: 42.5, change24h: 3.21 },
+  'DOT': { price: 8.92, change24h: 0.78 }
+};
 
 export default function MarketTicker() {
   const [prices, setPrices] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
     async function fetchPrices() {
       try {
-        const response = await fetch('/api/market');
-        const data = await response.json();
+        const results = [];
         
-        if (data.success && data.data) {
-          // Filter popular pairs
-          const popular = POPULAR_PAIRS.map(pair => {
-            const base = pair.replace('_USDC', '');
-            return data.data.find(p => p.symbol === base);
-          }).filter(Boolean);
-          
-          setPrices(popular);
-        } else {
-          // Fallback to demo data
-          setPrices(getDemoData());
+        for (const pair of POPULAR_PAIRS) {
+          try {
+            const symbol = pair.replace('_USDC', '');
+            const response = await fetch(
+              `https://api.backpack.exchange/api/v1/ticker?symbol=${pair}`,
+              { cache: 'no-store' }
+            );
+            
+            if (response.ok) {
+              const data = await response.json();
+              results.push({
+                symbol,
+                price: parseFloat(data.lastPrice) || 0,
+                change24h: (parseFloat(data.priceChangePercent) * 100) || 0
+              });
+            } else {
+              const demo = DEMO_DATA[symbol];
+              if (demo) results.push({ symbol, ...demo });
+            }
+          } catch (err) {
+            const demo = DEMO_DATA[symbol];
+            if (demo) results.push({ symbol, ...demo });
+          }
         }
+
+        setPrices(results);
       } catch (err) {
         console.error('Failed to fetch prices:', err);
-        setError(err.message);
-        setPrices(getDemoData());
+        // Use demo data
+        const demoResults = Object.entries(DEMO_DATA).map(([symbol, data]) => ({
+          symbol,
+          ...data
+        }));
+        setPrices(demoResults);
       } finally {
         setLoading(false);
       }
     }
 
     fetchPrices();
-    
-    // Refresh every 60 seconds
-    const interval = setInterval(fetchPrices, 60000);
+    const interval = setInterval(fetchPrices, 30000); // Refresh every 30s
     return () => clearInterval(interval);
   }, []);
-
-  if (error) {
-    return (
-      <div className="market-ticker">
-        <div className="ticker-content">
-          {getDemoData().map((item) => (
-            <div key={item.symbol} className="ticker-item">
-              <span className="ticker-symbol">{item.symbol}</span>
-              <span className="ticker-price">${item.price.toLocaleString()}</span>
-              <span className={`ticker-change ${item.changePercent < 0 ? 'negative' : ''}`}>
-                {item.changePercent >= 0 ? '+' : ''}{item.changePercent.toFixed(2)}%
-              </span>
-            </div>
-          ))}
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="market-ticker">
@@ -80,42 +85,33 @@ export default function MarketTicker() {
             <span>Loading prices...</span>
           </div>
         ) : (
-          prices.map((item) => (
-            <div key={item.symbol} className="ticker-item">
-              <span className="ticker-symbol">{item.symbol}</span>
-              <span className="ticker-price">${item.price.toLocaleString()}</span>
-              <span className={`ticker-change ${item.changePercent < 0 ? 'negative' : ''}`}>
-                {item.changePercent >= 0 ? '+' : ''}{item.changePercent.toFixed(2)}%
-              </span>
-            </div>
-          ))
+          <>
+            {prices.map((item) => (
+              <div key={item.symbol} className="ticker-item">
+                <span className="ticker-symbol">{item.symbol}</span>
+                <span className="ticker-price">
+                  ${item.price >= 1000 ? item.price.toLocaleString() : item.price.toFixed(item.price >= 1 ? 2 : 4)}
+                </span>
+                <span className={`ticker-change ${item.change24h < 0 ? 'negative' : ''}`}>
+                  {item.change24h >= 0 ? '+' : ''}{item.change24h.toFixed(2)}%
+                </span>
+              </div>
+            ))}
+            {/* Duplicate for continuous scroll */}
+            {prices.map((item) => (
+              <div key={`dup-${item.symbol}`} className="ticker-item">
+                <span className="ticker-symbol">{item.symbol}</span>
+                <span className="ticker-price">
+                  ${item.price >= 1000 ? item.price.toLocaleString() : item.price.toFixed(item.price >= 1 ? 2 : 4)}
+                </span>
+                <span className={`ticker-change ${item.change24h < 0 ? 'negative' : ''}`}>
+                  {item.change24h >= 0 ? '+' : ''}{item.change24h.toFixed(2)}%
+                </span>
+              </div>
+            ))}
+          </>
         )}
-        {/* Duplicate for continuous scroll */}
-        {prices.map((item) => (
-          <div key={`dup-${item.symbol}`} className="ticker-item">
-            <span className="ticker-symbol">{item.symbol}</span>
-            <span className="ticker-price">${item.price.toLocaleString()}</span>
-            <span className={`ticker-change ${item.changePercent < 0 ? 'negative' : ''}`}>
-              {item.changePercent >= 0 ? '+' : ''}{item.changePercent.toFixed(2)}%
-            </span>
-          </div>
-        ))}
       </div>
     </div>
   );
-}
-
-function getDemoData() {
-  return [
-    { symbol: 'BTC', price: 67842, changePercent: 2.34 },
-    { symbol: 'ETH', price: 3421, changePercent: 1.87 },
-    { symbol: 'BNB', price: 592, changePercent: 0.95 },
-    { symbol: 'SOL', price: 178, changePercent: 5.67 },
-    { symbol: 'XRP', price: 0.62, changePercent: -0.45 },
-    { symbol: 'ADA', price: 0.68, changePercent: 1.23 },
-    { symbol: 'AVAX', price: 42.5, changePercent: 3.21 },
-    { symbol: 'DOT', price: 8.92, changePercent: 0.78 },
-    { symbol: 'MATIC', price: 1.23, changePercent: -1.45 },
-    { symbol: 'LINK', price: 18.5, changePercent: 2.11 }
-  ];
 }

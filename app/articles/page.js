@@ -280,19 +280,6 @@ export default function ArticlesPage() {
         fontSize: '0.9rem'
       }}>
         <p>© 2024 CryptoConsult. All rights reserved.</p>
-        <p style={{ marginTop: '0.5rem', fontSize: '0.8rem' }}>
-          文章来源: 
-      {/* Footer */}
-      <footer style={{ 
-        background: '#161b22', 
-        borderTop: '1px solid #30363d',
-        padding: '2rem',
-        marginTop: '3rem',
-        textAlign: 'center',
-        color: '#6e7681',
-        fontSize: '0.9rem'
-      }}>
-        <p>© 2024 CryptoConsult. All rights reserved.</p>
       </footer>
     </main>
   );

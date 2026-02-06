@@ -233,12 +233,11 @@ export default function ArticlesPage() {
                   }}>
                     {article.slug ? (
                       <Link 
-                        href={article.isLocal ? `/articles/${article.slug}` : article.url}
+                        href={`/articles/${article.slug}`}
                         style={{ 
                           color: '#ffffff', 
                           textDecoration: 'none' 
                         }}
-                        target={article.isLocal ? '_self' : '_blank'}
                       >
                         {article.title}
                       </Link>

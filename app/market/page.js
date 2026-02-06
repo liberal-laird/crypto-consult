@@ -1,5 +1,9 @@
 import Link from 'next/link';
 
+// Force dynamic rendering to get real-time prices
+export const dynamic = 'force-dynamic';
+export const revalidate = 60; // Revalidate every 60 seconds
+
 // Backpack API client - works without API key for public data
 async function fetchBackpackTicker(symbol) {
   try {

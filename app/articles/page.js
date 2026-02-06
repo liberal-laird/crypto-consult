@@ -166,14 +166,14 @@ export default function ArticlesPage() {
         }}>
           <span>📚 本地文章: {localArticles.length}</span>
           <span>🌐 抓取文章: {articles.length}</span>
-          <span>📝 总计: {allArticles.length}</span>
+          <span>📝 總計: {allArticles.length}</span>
         </div>
 
         {/* Loading */}
         {loading && (
           <div style={{ textAlign: 'center', padding: '3rem', color: '#8b949e' }}>
             <div style={{ fontSize: '2rem', marginBottom: '1rem' }}>⏳</div>
-            正在加载文章...
+            正在加載文章...
           </div>
         )}
 

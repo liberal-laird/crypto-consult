@@ -118,7 +118,7 @@ export default function MarketTicker() {
   return (
     <>
       <p style={{ textAlign: 'center', color: 'var(--text-secondary)', marginBottom: '2rem' }}>
-        数据来源：Backpack Exchange {error && '(演示数据)'} • 更新于 {lastUpdate}
+        數據來源：Backpack Exchange {error && '(演示數據)'} • 更新於 {lastUpdate}
       </p>
 
       <div style={{ 
@@ -134,9 +134,9 @@ export default function MarketTicker() {
           <thead>
             <tr style={{ borderBottom: '2px solid var(--border)' }}>
               <th style={{ padding: '1rem', textAlign: 'left' }}>#</th>
-              <th style={{ padding: '1rem', textAlign: 'left' }}>币种</th>
-              <th style={{ padding: '1rem', textAlign: 'right' }}>价格</th>
-              <th style={{ padding: '1rem', textAlign: 'right' }}>24h 涨跌</th>
+              <th style={{ padding: '1rem', textAlign: 'left' }}>幣種</th>
+              <th style={{ padding: '1rem', textAlign: 'right' }}>價格</th>
+              <th style={{ padding: '1rem', textAlign: 'right' }}>24h 漲跌</th>
               <th style={{ padding: '1rem', textAlign: 'right' }}>24h 最高</th>
               <th style={{ padding: '1rem', textAlign: 'right' }}>24h 最低</th>
             </tr>
@@ -145,7 +145,7 @@ export default function MarketTicker() {
             {loading ? (
               <tr>
                 <td colSpan={6} style={{ padding: '2rem', textAlign: 'center', color: 'var(--text-secondary)' }}>
-                  加载中...
+                  加載中...
                 </td>
               </tr>
             ) : (

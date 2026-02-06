@@ -16,7 +16,7 @@ export async function GET() {
     if (!fs.existsSync(filePath)) {
       return NextResponse.json({ 
         articles: [],
-        message: 'No rewritten articles yet. Run scraper first.' 
+        message: '尚未抓取重寫文章。請先運行爬蟲。'
       });
     }
     

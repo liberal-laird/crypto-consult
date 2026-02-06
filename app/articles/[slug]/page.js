@@ -42,7 +42,7 @@ export default function ArticleDetailPage() {
       }}>
         <div style={{ textAlign: 'center' }}>
           <div style={{ fontSize: '2rem', marginBottom: '1rem' }}>⏳</div>
-          <p>加载中...</p>
+          <p>加載中...</p>
         </div>
       </main>
     );
@@ -63,7 +63,7 @@ export default function ArticleDetailPage() {
           <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>😕</div>
           <h1>文章未找到</h1>
           <p style={{ color: '#8b949e', marginTop: '1rem' }}>
-            {error || '这篇文章可能已被移除'}
+            {error || '這篇文章可能已被移除'}
           </p>
           <Link 
             href="/articles"
@@ -164,7 +164,7 @@ export default function ArticleDetailPage() {
             gap: '0.5rem'
           }}>
             <span>🌐</span>
-            来源: Blockcast.it
+            來源: Blockcast.it
           </span>
         </div>
 
@@ -288,10 +288,10 @@ export default function ArticleDetailPage() {
           fontSize: '0.85rem'
         }}>
           <strong style={{ color: '#ffc107', display: 'block', marginBottom: '0.5rem' }}>
-            ℹ️ 内容说明
+            ℹ️ 內容說明
           </strong>
           <p style={{ color: '#8b949e', margin: 0 }}>
-            本文内容经过自动重写处理，仅供参考。投资有风险，请 DYOR。
+            本文內容經過自動重寫處理，僅供參考。投資有風險，請 DYOR。
           </p>
         </div>
       </article>

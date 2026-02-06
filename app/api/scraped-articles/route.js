@@ -17,7 +17,7 @@ export async function GET() {
     if (!fs.existsSync(articlesFile)) {
       return NextResponse.json({ 
         articles: [],
-        message: 'No articles scraped yet' 
+        message: '尚未抓取文章'
       });
     }
     
@@ -48,11 +48,11 @@ export async function GET() {
 
 function mapCategory(slug) {
   const categories = {
-    'news': '新闻',
-    'investment': '投资',
-    'trends': '趋势',
+    'news': '新聞',
+    'investment': '投資',
+    'trends': '趨勢',
     'mica': 'MICA分析',
-    'press-release': '新闻稿',
+    'press-release': '新聞稿',
     'crypto-exchanges': '交易所'
   };
   
@@ -60,5 +60,5 @@ function mapCategory(slug) {
     if (slug?.toLowerCase().includes(key)) return value;
   }
   
-  return '新闻';
+  return '新聞';
 }

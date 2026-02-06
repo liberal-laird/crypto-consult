@@ -42,7 +42,7 @@ export async function GET(request, { params }) {
     }
     
     if (!article) {
-      return NextResponse.json({ error: 'Article not found' }, { status: 404 });
+      return NextResponse.json({ error: '文章未找到' }, { status: 404 });
     }
     
     // Format content for display

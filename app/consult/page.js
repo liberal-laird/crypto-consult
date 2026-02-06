@@ -38,10 +38,10 @@ export default function ConsultPage() {
           <div className="header-content">
             <Link href="/" className="logo">CryptoConsult</Link>
             <nav className="nav">
-              <Link href="/">首页</Link>
+              <Link href="/">首頁</Link>
               <Link href="/articles">文章</Link>
               <Link href="/market">行情</Link>
-              <Link href="/consult">咨询</Link>
+              <Link href="/consult">諮詢</Link>
             </nav>
           </div>
         </header>
@@ -50,10 +50,10 @@ export default function ConsultPage() {
           <div style={{ fontSize: '4rem', marginBottom: '1rem' }}>✅</div>
           <h1 style={{ marginBottom: '1rem' }}>提交成功！</h1>
           <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem' }}>
-            感谢您的咨询，我们会在 24 小时内通过邮件回复您。
+            感謝您的諮詢，我們會在 24 小時內通過郵件回覆您。
           </p>
           <Link href="/" className="btn btn-primary">
-            返回首页
+            返回首頁
           </Link>
         </section>
       </main>
@@ -66,18 +66,18 @@ export default function ConsultPage() {
         <div className="header-content">
           <Link href="/" className="logo">CryptoConsult</Link>
           <nav className="nav">
-            <Link href="/">首页</Link>
+            <Link href="/">首頁</Link>
             <Link href="/articles">文章</Link>
             <Link href="/market">行情</Link>
-            <Link href="/consult">咨询</Link>
+            <Link href="/consult">諮詢</Link>
           </nav>
         </div>
       </header>
 
       <section className="section">
-        <h1 className="section-title">专业咨询</h1>
+        <h1 className="section-title">專業諮詢</h1>
         <p style={{ textAlign: 'center', color: 'var(--text-secondary)', marginBottom: '3rem', maxWidth: '600px', margin: '0 auto 3rem' }}>
-          我们的专业团队为您提供一对一的加密货币投资咨询服务
+          我們的專業團隊為您提供一對一的加密貨幣投資諮詢服務
         </p>
 
         <div className="inquiry-form">
@@ -91,12 +91,12 @@ export default function ConsultPage() {
                 value={formData.name}
                 onChange={handleChange}
                 required
-                placeholder="请输入您的姓名"
+                placeholder="請輸入您的姓名"
               />
             </div>
 
             <div className="form-group">
-              <label htmlFor="email">电子邮箱 *</label>
+              <label htmlFor="email">電子郵箱 *</label>
               <input
                 type="email"
                 id="email"
@@ -104,12 +104,12 @@ export default function ConsultPage() {
                 value={formData.email}
                 onChange={handleChange}
                 required
-                placeholder="请输入您的邮箱"
+                placeholder="請輸入您的郵箱"
               />
             </div>
 
             <div className="form-group">
-              <label htmlFor="subject">咨询主题 *</label>
+              <label htmlFor="subject">諮詢主題 *</label>
               <select
                 id="subject"
                 name="subject"
@@ -126,25 +126,25 @@ export default function ConsultPage() {
                   fontSize: '1rem'
                 }}
               >
-                <option value="">请选择咨询主题</option>
-                <option value="investment">投资策略咨询</option>
-                <option value="risk">风险管理建议</option>
-                <option value="defi">DeFi 协议使用</option>
-                <option value="tax">税务合规咨询</option>
-                <option value="wallet">钱包安全指导</option>
-                <option value="other">其他问题</option>
+                <option value="">請選擇諮詢主題</option>
+                <option value="investment">投資策略諮詢</option>
+                <option value="risk">風險管理建議</option>
+                <option value="defi">DeFi 協議使用</option>
+                <option value="tax">稅務合規諮詢</option>
+                <option value="wallet">錢包安全指導</option>
+                <option value="other">其他問題</option>
               </select>
             </div>
 
             <div className="form-group">
-              <label htmlFor="message">详细内容 *</label>
+              <label htmlFor="message">詳細內容 *</label>
               <textarea
                 id="message"
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
                 required
-                placeholder="请详细描述您的问题或需求，以便我们提供更准确的回复"
+                placeholder="請詳細描述您的問題或需求，以便我們提供更準確的回覆"
               />
             </div>
 
@@ -154,7 +154,7 @@ export default function ConsultPage() {
               style={{ width: '100%' }}
               disabled={submitting}
             >
-              {submitting ? '提交中...' : '提交咨询'}
+              {submitting ? '提交中...' : '提交諮詢'}
             </button>
           </form>
 
@@ -165,7 +165,7 @@ export default function ConsultPage() {
             textAlign: 'center',
             color: 'var(--text-secondary)'
           }}>
-            <p>或直接联系我们：</p>
+            <p>或直接聯繫我們：</p>
             <p style={{ marginTop: '0.5rem' }}>
               📧 <a href="mailto:contact@cryptoconsult.com" style={{ color: 'var(--primary)' }}>contact@cryptoconsult.com</a>
             </p>
@@ -174,27 +174,27 @@ export default function ConsultPage() {
 
         {/* Services Info */}
         <div style={{ marginTop: '4rem' }}>
-          <h2 style={{ textAlign: 'center', marginBottom: '2rem' }}>咨询服务</h2>
+          <h2 style={{ textAlign: 'center', marginBottom: '2rem' }}>諮詢服務</h2>
           <div className="features-grid">
             <div className="feature-card">
               <div className="feature-icon">💰</div>
-              <h3 className="feature-title">投资策略</h3>
+              <h3 className="feature-title">投資策略</h3>
               <p className="feature-desc">
-                根据您的风险偏好和投资目标，定制个性化的加密货币配置方案
+                根據您的風險偏好和投資目標，定制個性化的加密貨幣配置方案
               </p>
             </div>
             <div className="feature-card">
               <div className="feature-icon">📊</div>
-              <h3 className="feature-title">市场分析</h3>
+              <h3 className="feature-title">市場分析</h3>
               <p className="feature-desc">
-                深度解读市场趋势，把握投资机会，规避市场风险
+                深度解讀市場趨勢，把握投資機會，規避市場風險
               </p>
             </div>
             <div className="feature-card">
               <div className="feature-icon">🔒</div>
-              <h3 className="feature-title">安全顾问</h3>
+              <h3 className="feature-title">安全顧問</h3>
               <p className="feature-desc">
-                资产安全配置、钱包管理、私钥保护等专业指导
+                資產安全配置、錢包管理、私鑰保護等專業指導
               </p>
             </div>
           </div>

@@ -5,37 +5,37 @@ function getArticles() {
   return [
     {
       id: 1,
-      title: '2024年比特币减半解读：历史数据与未来展望',
+      title: '2024年比特幣減半解讀：歷史數據與未來展望',
       slug: 'bitcoin-halving-2024',
-      summary: '深入分析比特币减半的历史规律、价格走势以及对2024年减半的预测。',
-      category: '比特币',
-      tags: ['BTC', '减半', '投资']
+      summary: '深入分析比特幣減半的歷史規律、價格走勢以及對2024年減半的預測。',
+      category: '比特幣',
+      tags: ['BTC', '減半', '投資']
     },
     {
       id: 2,
-      title: 'DeFi 入门指南：去中心化金融详解',
+      title: 'DeFi 入門指南：去中心化金融詳解',
       slug: 'defi-guide-beginners',
-      summary: '全面介绍 DeFi（去中心化金融）的概念、主要协议和投资机会。',
+      summary: '全面介紹 DeFi（去中心化金融）的概念、主要協議和投資機會。',
       category: 'DeFi',
       tags: ['DeFi', 'Uniswap', 'Aave']
     },
     {
       id: 3,
-      title: 'Layer 2 解决方案详解：比特币与以太坊扩容',
+      title: 'Layer 2 解決方案詳解：比特幣與以太坊擴容',
       slug: 'layer2-scaling-solutions',
-      summary: '比较分析主流 Layer 2 扩容方案，包括闪电网络、Arbitrum、Optimism 等。',
-      category: '技术',
-      tags: ['Layer2', '扩容', 'Arbitrum']
+      summary: '比較分析主流 Layer 2 擴容方案，包括閃電網絡、Arbitrum、Optimism 等。',
+      category: '技術',
+      tags: ['Layer2', '擴容', 'Arbitrum']
     }
   ];
 }
 
 function getServices() {
   return [
-    { icon: '📊', title: '市场分析', desc: '专业的加密货币市场趋势分析，提供投资决策参考' },
-    { icon: '📚', title: '投资教育', desc: '从入门到进阶的系统性加密货币投资知识体系' },
-    { icon: '💼', title: '一对一咨询', desc: '针对个人情况的定制化投资建议和风险评估' },
-    { icon: '🛡️', title: '风险控制', desc: '科学的仓位管理和风险控制策略指导' }
+    { icon: '📊', title: '市場分析', desc: '專業的加密貨幣市場趨勢分析，提供投資決策參考' },
+    { icon: '📚', title: '投資教育', desc: '從入門到進階的系統性加密貨幣投資知識體系' },
+    { icon: '💼', title: '一對一諮詢', desc: '針對個人情況的定制化投資建議和風險評估' },
+    { icon: '🛡️', title: '風險控制', desc: '科學的倉位管理和風險控制策略指導' }
   ];
 }
 
@@ -75,10 +75,10 @@ export default function Home() {
             CryptoConsult
           </Link>
           <nav style={{ display: 'flex', gap: '2rem' }}>
-            <Link href="/" style={{ color: '#8b949e', textDecoration: 'none' }}>首页</Link>
+            <Link href="/" style={{ color: '#8b949e', textDecoration: 'none' }}>首頁</Link>
             <Link href="/articles" style={{ color: '#8b949e', textDecoration: 'none' }}>文章</Link>
             <Link href="/market" style={{ color: '#8b949e', textDecoration: 'none' }}>行情</Link>
-            <Link href="/consult" style={{ color: '#8b949e', textDecoration: 'none' }}>咨询</Link>
+            <Link href="/consult" style={{ color: '#8b949e', textDecoration: 'none' }}>諮詢</Link>
           </nav>
         </div>
       </header>
@@ -96,10 +96,10 @@ export default function Home() {
           WebkitBackgroundClip: 'text',
           WebkitTextFillColor: 'transparent'
         }}>
-          加密货币金融咨询平台
+          加密貨幣金融諮詢平台
         </h1>
         <p style={{ color: '#8b949e', fontSize: '1.25rem', marginBottom: '2rem' }}>
-          专业、客观、及时的加密货币投资咨询、市场分析和技术解读
+          專業、客觀、及時的加密貨幣投資諮詢、市場分析和技術解讀
         </p>
         <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
           <Link href="/articles" style={{
@@ -111,7 +111,7 @@ export default function Home() {
             fontWeight: 600,
             textDecoration: 'none'
           }}>
-            浏览文章
+            瀏覽文章
           </Link>
           <Link href="/consult" style={{
             display: 'inline-block',
@@ -122,14 +122,14 @@ export default function Home() {
             fontWeight: 600,
             textDecoration: 'none'
           }}>
-            立即咨询
+            立即諮詢
           </Link>
         </div>
       </section>
 
       {/* Services */}
       <section style={{ maxWidth: '1200px', margin: '0 auto', padding: '4rem 2rem' }}>
-        <h2 style={{ fontSize: '2rem', textAlign: 'center', marginBottom: '2rem' }}>我们的服务</h2>
+        <h2 style={{ fontSize: '2rem', textAlign: 'center', marginBottom: '2rem' }}>我們的服務</h2>
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
@@ -234,19 +234,19 @@ export default function Home() {
           <div>
             <h4 style={{ marginBottom: '1rem' }}>CryptoConsult</h4>
             <p style={{ color: '#8b949e' }}>
-              专业的加密货币金融咨询服务平台
+              專業的加密貨幣金融諮詢服務平台
             </p>
           </div>
           <div>
-            <h4 style={{ marginBottom: '1rem' }}>快速链接</h4>
+            <h4 style={{ marginBottom: '1rem' }}>快速連結</h4>
             <Link href="/articles" style={{ display: 'block', color: '#8b949e', textDecoration: 'none', marginBottom: '0.5rem' }}>文章</Link>
             <Link href="/market" style={{ display: 'block', color: '#8b949e', textDecoration: 'none', marginBottom: '0.5rem' }}>行情</Link>
-            <Link href="/consult" style={{ display: 'block', color: '#8b949e', textDecoration: 'none' }}>咨询</Link>
+            <Link href="/consult" style={{ display: 'block', color: '#8b949e', textDecoration: 'none' }}>諮詢</Link>
           </div>
           <div>
-            <h4 style={{ marginBottom: '1rem' }}>帮助</h4>
-            <Link href="/contact" style={{ display: 'block', color: '#8b949e', textDecoration: 'none', marginBottom: '0.5rem' }}>联系我们</Link>
-            <Link href="/disclaimer" style={{ display: 'block', color: '#8b949e', textDecoration: 'none' }}>免责声明</Link>
+            <h4 style={{ marginBottom: '1rem' }}>幫助</h4>
+            <Link href="/contact" style={{ display: 'block', color: '#8b949e', textDecoration: 'none', marginBottom: '0.5rem' }}>聯繫我們</Link>
+            <Link href="/disclaimer" style={{ display: 'block', color: '#8b949e', textDecoration: 'none' }}>免責聲明</Link>
           </div>
         </div>
         <div style={{
@@ -259,7 +259,7 @@ export default function Home() {
         }}>
           <p>© 2024 CryptoConsult. All rights reserved.</p>
           <p style={{ marginTop: '0.5rem', fontSize: '0.85rem' }}>
-            投资有风险，入市需谨慎。本站内容不构成任何投资建议。
+            投資有風險，入市需謹慎。本站內容不構成任何投資建議。
           </p>
         </div>
       </footer>

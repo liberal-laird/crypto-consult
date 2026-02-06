@@ -82,7 +82,7 @@ export default function MarketTicker() {
       <div className="ticker-content">
         {loading ? (
           <div className="ticker-item">
-            <span>Loading prices...</span>
+            <span>加載價格中...</span>
           </div>
         ) : (
           <>

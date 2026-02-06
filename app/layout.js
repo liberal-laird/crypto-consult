@@ -23,7 +23,7 @@ export const metadata = {
     '虛擬貨幣',
     '加密貨幣入門'
   ],
-  authors: [{ name: 'CryptoA8King', url: 'https://crypto-consult-seven.vercel.app' }],
+  authors: [{ name: 'CryptoA8King', url: 'https://www.a8king.com' }],
   creator: 'CryptoA8King',
   publisher: 'CryptoA8King',
   robots: {
@@ -40,7 +40,7 @@ export const metadata = {
   openGraph: {
     type: 'website',
     locale: 'zh_TW',
-    url: 'https://crypto-consult-seven.vercel.app',
+    url: 'https://www.a8king.com',
     siteName: 'CryptoA8King',
     title: 'CryptoA8King - 加密貨幣金融諮詢平台',
     description: '專業的加密貨幣投資諮詢、市場分析和 DeFi 指南',
@@ -70,11 +70,11 @@ export const metadata = {
     yandex: 'yandex-verification-code'
   },
   alternates: {
-    canonical: 'https://crypto-consult-seven.vercel.app',
+    canonical: 'https://www.a8king.com',
     languages: {
-      'zh-TW': 'https://crypto-consult-seven.vercel.app',
-      'zh-CN': 'https://crypto-consult-seven.vercel.app',
-      'en': 'https://crypto-consult-seven.vercel.app/en'
+      'zh-TW': 'https://www.a8king.com',
+      'zh-CN': 'https://www.a8king.com',
+      'en': 'https://www.a8king.com/en'
     }
   },
   category: 'finance',
@@ -106,8 +106,8 @@ export default function RootLayout({ children }) {
               '@context': 'https://schema.org',
               '@type': 'FinancialService',
               name: 'CryptoA8King',
-              url: 'https://crypto-consult-seven.vercel.app',
-              logo: 'https://crypto-consult-seven.vercel.app/icon.svg',
+              url: 'https://www.a8king.com',
+              logo: 'https://www.a8king.com/icon.svg',
               description: '專業的加密貨幣投資諮詢、市場分析和 DeFi 指南',
               address: {
                 '@type': 'PostalAddress',
@@ -135,12 +135,12 @@ export default function RootLayout({ children }) {
               '@context': 'https://schema.org',
               '@type': 'WebSite',
               name: 'CryptoA8King',
-              url: 'https://crypto-consult-seven.vercel.app',
+              url: 'https://www.a8king.com',
               potentialAction: {
                 '@type': 'SearchAction',
                 target: {
                   '@type': 'EntryPoint',
-                  urlTemplate: 'https://crypto-consult-seven.vercel.app/search?q={search_term_string}'
+                  urlTemplate: 'https://www.a8king.com/search?q={search_term_string}'
                 },
                 'query-input': 'required name=search_term_string'
               }
@@ -160,19 +160,19 @@ export default function RootLayout({ children }) {
                   '@type': 'ListItem',
                   position: 1,
                   name: '首頁',
-                  item: 'https://crypto-consult-seven.vercel.app/'
+                  item: 'https://www.a8king.com/'
                 },
                 {
                   '@type': 'ListItem',
                   position: 2,
                   name: '文章',
-                  item: 'https://crypto-consult-seven.vercel.app/articles'
+                  item: 'https://www.a8king.com/articles'
                 },
                 {
                   '@type': 'ListItem',
                   position: 3,
                   name: '行情',
-                  item: 'https://crypto-consult-seven.vercel.app/market'
+                  item: 'https://www.a8king.com/market'
                 }
               ]
             })

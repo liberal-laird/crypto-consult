@@ -4,35 +4,35 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   
   <url>
-    <loc>https://crypto-consult-seven.vercel.app/</loc>
+    <loc>https://www.a8king.com/</loc>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <lastmod>2026-02-06</lastmod>
   </url>
   
   <url>
-    <loc>https://crypto-consult-seven.vercel.app/articles</loc>
+    <loc>https://www.a8king.com/articles</loc>
     <changefreq>hourly</changefreq>
     <priority>0.9</priority>
     <lastmod>2026-02-06</lastmod>
   </url>
   
   <url>
-    <loc>https://crypto-consult-seven.vercel.app/market</loc>
+    <loc>https://www.a8king.com/market</loc>
     <changefreq>hourly</changefreq>
     <priority>0.8</priority>
     <lastmod>2026-02-06</lastmod>
   </url>
   
   <url>
-    <loc>https://crypto-consult-seven.vercel.app/consult</loc>
+    <loc>https://www.a8king.com/consult</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <!-- Main Articles -->
   <url>
-    <loc>https://crypto-consult-seven.vercel.app/articles/bitcoin-halving-2024</loc>
+    <loc>https://www.a8king.com/articles/bitcoin-halving-2024</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <lastmod>2026-02-06</lastmod>
@@ -47,7 +47,7 @@
   </url>
   
   <url>
-    <loc>https://crypto-consult-seven.vercel.app/articles/defi-guide-beginners</loc>
+    <loc>https://www.a8king.com/articles/defi-guide-beginners</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <lastmod>2024-01-20</lastmod>
@@ -62,7 +62,7 @@
   </url>
   
   <url>
-    <loc>https://crypto-consult-seven.vercel.app/articles/layer2-scaling-solutions</loc>
+    <loc>https://www.a8king.com/articles/layer2-scaling-solutions</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <lastmod>2024-01-25</lastmod>

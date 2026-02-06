@@ -50,7 +50,11 @@ async function getMarketData() {
   });
 
   const results = await Promise.all(promises);
-  return results.filter(Boolean);
+  
+  // Filter out null results and sort by price (descending)
+  const validData = results.filter(Boolean).sort((a, b) => b.price - a.price);
+  
+  return validData;
 }
 
 function formatNumber(num) {

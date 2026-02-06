@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { BackpackClient, formatMarketData } from '../../lib/backpack';
+import { BackpackClient, formatMarketData } from '../../../lib/backpack';
 
 export async function GET(request) {
   try {

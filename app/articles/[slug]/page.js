@@ -151,23 +151,6 @@ export default function ArticleDetailPage() {
           ← 返回文章列表
         </Link>
 
-        {/* Original Source Badge */}
-        <div style={{ marginBottom: '1rem' }}>
-          <span style={{ 
-            background: 'rgba(98, 126, 234, 0.2)', 
-            color: '#627eea', 
-            padding: '0.35rem 1rem', 
-            borderRadius: '20px', 
-            fontSize: '0.85rem',
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '0.5rem'
-          }}>
-            <span>🌐</span>
-            來源: Blockcast.it
-          </span>
-        </div>
-
         {/* Title */}
         <h1 style={{ 
           fontSize: '2rem', 

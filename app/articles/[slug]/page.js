@@ -1,6 +1,5 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import './globals.css';
 
 async function getArticle(slug) {
   const articles = {

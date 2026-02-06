@@ -7,7 +7,7 @@ export default function GlobalError({
   return (
     <html lang="zh-CN">
       <head>
-        <title>错误 - CryptoConsult</title>
+        <title>错误 - CryptoA8King</title>
       </head>
       <body>
         <div className="error-container">

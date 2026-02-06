@@ -1,4 +1,4 @@
-# CryptoConsult - 加密货币金融咨询平台
+# CryptoA8King - 加密貨幣金融諮詢平台
 
 专业的加密货币投资咨询、市场分析和 DeFi 指南网站。
 

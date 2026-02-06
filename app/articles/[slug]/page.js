@@ -268,6 +268,28 @@ export default function ArticleDetailPage() {
           )}
         </div>
 
+        {/* Google Adsense */}
+        <div style={{ marginTop: '2rem' }}>
+          <script
+            async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4522670236044605"
+            crossOrigin="anonymous"
+          />
+          <ins
+            className="adsbygoogle"
+            style={{ display: 'block' }}
+            data-ad-client="ca-pub-4522670236044605"
+            data-ad-slot="7309209376"
+            data-ad-format="auto"
+            data-full-width-responsive="true"
+          />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: '(adsbygoogle = window.adsbygoogle || []).push({});'
+            }}
+          />
+        </div>
+
         {/* Divider */}
         <hr style={{ 
           border: 'none', 

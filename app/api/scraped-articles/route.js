@@ -81,17 +81,19 @@ function getArticlesFromFile() {
 
 export async function GET() {
   try {
-    // 优先从数据库获取
+    // 强制从数据库获取所有来源的文章
     const dbArticles = await getArticlesFromDB();
     
     if (dbArticles && dbArticles.length > 0) {
+      console.log(`从数据库返回 ${dbArticles.length} 篇文章`);
       return NextResponse.json({ articles: dbArticles, source: 'database' });
     }
     
-    // 回退到文件
+    // 如果数据库为空，尝试从文件读取
+    console.log('数据库为空，尝试从文件读取...');
     const fileArticles = getArticlesFromFile();
     
-    if (fileArticles) {
+    if (fileArticles && fileArticles.length > 0) {
       return NextResponse.json({ articles: fileArticles, source: 'file' });
     }
     

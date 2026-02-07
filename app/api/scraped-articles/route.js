@@ -1,53 +1,31 @@
 import { NextResponse } from 'next/server';
 
-const SUPABASE_URL = process.env.SUPABASE_URL || 'https://fokilsfcnablraexmtju.supabase.co';
-const SUPABASE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.POSTGRES_URL || '';
-
-async function querySupabase(sql) {
-  const response = await fetch(`${SUPABASE_URL}/rest/v1/rpc/exec_sql`, {
-    method: 'POST',
-    headers: {
-      'Authorization': `Bearer ${SUPABASE_KEY}`,
-      'apikey': SUPABASE_KEY,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ sql })
-  });
-  
-  if (!response.ok) {
-    const err = await response.text();
-    console.error('Supabase error:', err);
-    return null;
-  }
-  
-  return response.json();
-}
+const SUPABASE_URL = 'https://fokilsfcnablraexmtju.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZva2lsc2ZjbmFibHJhZXhtdGp1Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3MDQ4MDgwMCwiZXhwIjoyMDg1OTc2ODAwfQ.IJBK-_22D5xfkIM6bKCPjG2GYzQH8Vouq_clpN8aYVw';
 
 async function getArticlesFromDB() {
   try {
-    // 先创建exec_sql函数（如果不存在）
-    await querySupabase(`
-      CREATE OR REPLACE FUNCTION exec_sql(sql text)
-      RETURNS SETOF text AS $$
-      BEGIN
-        RETURN QUERY EXECUTE sql;
-      END;
-      $$ LANGUAGE plpgsql;
-    `);
+    // 使用 Supabase REST API 直接查询
+    const url = `${SUPABASE_URL}/rest/v1/articles?status=eq.published&order=published_at.desc&select=*`;
     
-    // 查询所有文章
-    const result = await querySupabase(`
-      SELECT id, slug, rewritten_title, excerpt, original_url, published_at, source, word_count, categories, tags
-      FROM articles
-      WHERE status = 'published'
-      ORDER BY published_at DESC
-    `);
+    const response = await fetch(url, {
+      headers: {
+        'Authorization': `Bearer ${SUPABASE_KEY}`,
+        'apikey': SUPABASE_KEY,
+        'Content-Type': 'application/json',
+        'Range': '0-100'
+      }
+    });
     
-    if (!result || !Array.isArray(result)) {
+    if (!response.ok) {
+      console.error('Supabase error:', response.status);
       return [];
     }
     
-    return result.map(row => ({
+    const data = await response.json();
+    console.log('查询到文章数:', data.length);
+    
+    return data.map(row => ({
       id: row.id,
       title: row.rewritten_title,
       slug: row.slug,
@@ -69,7 +47,7 @@ async function getArticlesFromDB() {
 export async function GET() {
   try {
     const articles = await getArticlesFromDB();
-    console.log(`从数据库返回 ${articles.length} 篇文章`);
+    console.log(`返回 ${articles.length} 篇文章`);
     
     return NextResponse.json({ 
       articles,

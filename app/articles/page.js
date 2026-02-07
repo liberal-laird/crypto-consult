@@ -70,7 +70,7 @@ export default function ArticlesPage() {
                 item: {
                   '@type': 'Article',
                   name: article.title,
-                  url: `https://crypto-consult-seven.vercel.app/articles/${article.slug}`,
+                  url: `https://crypto-consult-seven.vercel.app/articles/${encodeURIComponent(article.slug)}`,
                   description: article.summary || article.excerpt,
                   articleSection: article.category
                 }
@@ -201,7 +201,7 @@ export default function ArticlesPage() {
                   }}>
                     {article.slug ? (
                       <Link 
-                        href={`/articles/${article.slug}`}
+                        href={`/articles/${encodeURIComponent(article.slug)}`}
                         style={{ 
                           color: '#ffffff', 
                           textDecoration: 'none' 

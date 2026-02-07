@@ -14,9 +14,12 @@ export default function ArticleDetailPage() {
   useEffect(() => {
     if (!slug) return;
     
+    // Decode slug (it was encoded with encodeURIComponent)
+    const decodedSlug = decodeURIComponent(slug);
+    
     async function fetchArticle() {
       try {
-        const res = await fetch(`/api/articles/${slug}`);
+        const res = await fetch(`/api/articles/${encodeURIComponent(decodedSlug)}`);
         if (!res.ok) throw new Error('文章未找到');
         const data = await res.json();
         setArticle(data);
@@ -42,7 +45,7 @@ export default function ArticleDetailPage() {
         dateModified: article.rewrittenAt || article.publishedAt,
         mainEntityOfPage: {
           '@type': 'WebPage',
-          '@id': `https://crypto-consult-seven.vercel.app/articles/${article.slug}`
+          '@id': `https://crypto-consult-seven.vercel.app/articles/${encodeURIComponent(article.slug)}`
         },
         wordCount: article.wordCount,
         articleSection: '加密貨幣',

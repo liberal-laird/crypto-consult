@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
 
-// 从环境变量获取 Supabase 配置
 const SUPABASE_URL = process.env.SUPABASE_URL || 'https://fokilsfcnablraexmtju.supabase.co';
 const SUPABASE_SECRET = process.env.SUPABASE_SECRET_KEY || '';
 
@@ -11,7 +10,8 @@ async function getArticlesFromDB() {
       return [];
     }
     
-    const url = `${SUPABASE_URL}/rest/v1/articles?status=eq.published&order=published_at.desc&select=*`;
+    // 查询所有状态的文章
+    const url = `${SUPABASE_URL}/rest/v1/articles?order=published_at.desc&select=*`;
     
     const response = await fetch(url, {
       headers: {

@@ -1,44 +1,51 @@
 import { NextResponse } from 'next/server';
-import fs from 'fs';
-import path from 'path';
+import { createClient } from '@supabase/supabase-js';
 
-const REWRITTEN_FILE = path.join(process.cwd(), '..', '.openclaw', 'workspace', 'scrapers', 'rewritten_articles.json');
-const PUBLIC_FILE = path.join(process.cwd(), 'public', 'rewritten_articles.json');
+const supabaseUrl = process.env.SUPABASE_URL || 'https://fokilsfcnablraexmtju.supabase.co';
+const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.POSTGRES_URL || '';
+
+let supabase = null;
+if (supabaseKey) {
+  supabase = createClient(supabaseUrl, supabaseKey);
+}
 
 export async function GET(request, { params }) {
   const { slug } = await params;
   
+  if (!supabase) {
+    return NextResponse.json({ error: '数据库未配置' }, { status: 500 });
+  }
+  
   try {
-    let article = null;
+    // 从数据库查询文章
+    const { data, error } = await supabase
+      .from('articles')
+      .select('*')
+      .eq('slug', slug)
+      .eq('status', 'published')
+      .single();
     
-    // Try rewritten articles from scrapers (public folder first, then workspace)
-    let filePath = PUBLIC_FILE;
-    if (!fs.existsSync(filePath)) {
-      filePath = REWRITTEN_FILE;
+    if (error || !data) {
+      console.error('文章未找到:', slug);
+      return NextResponse.json({ error: '文章未找到' }, { status: 404 });
     }
     
-    if (fs.existsSync(filePath)) {
-      const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-      article = data.find(a => a.slug === slug);
-      
-      if (article) {
-        return NextResponse.json({
-          id: article.id,
-          slug: article.slug,
-          title: article.rewrittenTitle,
-          originalTitle: article.originalTitle,
-          content: formatContent(article.rewrittenContent),
-          excerpt: article.excerpt,
-          publishedAt: article.publishedAt,
-          source: article.source,
-          originalUrl: article.originalUrl,
-          wordCount: article.wordCount,
-          rewrittenAt: article.rewrittenAt
-        });
-      }
-    }
+    // 格式化内容
+    const content = formatContent(data.rewritten_content || '');
     
-    return NextResponse.json({ error: '文章未找到' }, { status: 404 });
+    return NextResponse.json({
+      id: data.id,
+      slug: data.slug,
+      title: data.rewritten_title,
+      originalTitle: data.original_title,
+      content: content,
+      excerpt: data.excerpt,
+      publishedAt: data.published_at,
+      source: data.source,
+      originalUrl: data.original_url,
+      wordCount: data.word_count,
+      rewrittenAt: data.rewritten_at
+    });
     
   } catch (error) {
     console.error('API error:', error);
@@ -47,9 +54,9 @@ export async function GET(request, { params }) {
 }
 
 function formatContent(content) {
-  if (!content) return '';
+  if (!content) return [];
   
-  // Handle array content (already formatted)
+  // Handle array content
   if (Array.isArray(content)) {
     return content;
   }
@@ -60,7 +67,7 @@ function formatContent(content) {
   return paragraphs.map((para, index) => {
     para = para.trim();
     
-    // Detect headings (## or headings)
+    // Detect headings
     if (para.startsWith('## ') || (para.length < 50 && (para.includes('：') || para.includes(':')) && index > 0)) {
       const cleanText = para.replace(/^##\s*/, '').replace(/[：:]$/, '');
       if (cleanText.length < 80) {
@@ -73,7 +80,6 @@ function formatContent(content) {
       return { type: 'list', text: para.replace(/^[-•*]\s*/, '').replace(/^\d+[.、]\s*/, '') };
     }
     
-    // Regular paragraph
     return { type: 'paragraph', text: para };
   });
 }

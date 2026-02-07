@@ -1,45 +1,53 @@
 import { NextResponse } from 'next/server';
-import { Client } from 'pg';
-import fs from 'fs';
-import path from 'path';
+import { createClient } from '@supabase/supabase-js';
 
-const ARTICLES_FILE = path.join(process.cwd(), '..', '..', '.openclaw', 'workspace', 'scrapers', 'articles.json');
-const PUBLIC_FILE = path.join(process.cwd(), 'public', 'articles.json');
+// 使用 Supabase 直接连接
+const supabaseUrl = process.env.SUPABASE_URL || 'https://fokilsfcnablraexmtju.supabase.co';
+const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.POSTGRES_URL || '';
 
-// 数据库连接配置
-const dbClient = new Client({
-  connectionString: process.env.POSTGRES_URL || 'postgres://postgres.fokilsfcnablraexmtju:YjRQwjYVKvZ8RSSu@aws-1-ap-southeast-1.pooler.supabase.com:6543/postgres?sslmode=require',
-  ssl: { rejectUnauthorized: false }
-});
+let supabase = null;
+
+if (supabaseKey) {
+  supabase = createClient(supabaseUrl, supabaseKey);
+}
 
 async function getArticlesFromDB() {
+  if (!supabase) {
+    console.error('Supabase 未配置');
+    return null;
+  }
+  
   try {
-    if (!dbClient._connected) {
-      await dbClient.connect();
+    const { data, error } = await supabase
+      .from('articles')
+      .select(`
+        id, slug, rewritten_title, rewritten_content, excerpt, 
+        original_url, published_at, source, word_count, rewritten_at,
+        meta_title, meta_description, keywords, categories, tags
+      `)
+      .eq('status', 'published')
+      .order('published_at', { ascending: false });
+    
+    if (error) {
+      console.error('Supabase 查询错误:', error.message);
+      return null;
     }
     
-    const result = await dbClient.query(`
-      SELECT 
-        id, slug, rewritten_title as title, rewritten_content as content,
-        excerpt, original_url as url, published_at, source, 
-        categories, tags, word_count, rewritten_at,
-        meta_title, meta_description, keywords
-      FROM articles
-      WHERE status = 'published'
-      ORDER BY published_at DESC
-    `);
+    if (!data || data.length === 0) {
+      return [];
+    }
     
-    return result.rows.map(row => ({
+    return data.map(row => ({
       id: row.id,
-      title: row.title,
+      title: row.rewritten_title,
       slug: row.slug,
-      summary: row.excerpt || row.title,
+      summary: row.excerpt || row.rewritten_title,
       category: row.categories?.[0] || '新聞',
       author: 'Blockcast',
       published_at: row.published_at,
       url: row.original_url,
       source: row.source,
-      content: row.content,
+      content: row.rewritten_content,
       categories: row.categories,
       tags: row.tags,
       wordCount: row.word_count,
@@ -53,35 +61,9 @@ async function getArticlesFromDB() {
   }
 }
 
-function getArticlesFromFile() {
-  let articlesFile = PUBLIC_FILE;
-  if (!fs.existsSync(articlesFile)) {
-    articlesFile = ARTICLES_FILE;
-  }
-  
-  if (!fs.existsSync(articlesFile)) {
-    return null;
-  }
-  
-  const data = fs.readFileSync(articlesFile, 'utf8');
-  const articles = JSON.parse(data);
-  
-  return articles.map(a => ({
-    id: a.id,
-    title: a.title,
-    slug: a.slug || a.url.split('/').filter(Boolean).pop(),
-    summary: a.excerpt || a.title,
-    category: mapCategory(a.slug || a.url),
-    author: 'Blockcast',
-    published_at: a.publishedAt,
-    url: a.url,
-    source: 'blockcast'
-  }));
-}
-
 export async function GET() {
   try {
-    // 强制从数据库获取所有来源的文章
+    // 从数据库获取所有来源的文章
     const dbArticles = await getArticlesFromDB();
     
     if (dbArticles && dbArticles.length > 0) {
@@ -89,17 +71,9 @@ export async function GET() {
       return NextResponse.json({ articles: dbArticles, source: 'database' });
     }
     
-    // 如果数据库为空，尝试从文件读取
-    console.log('数据库为空，尝试从文件读取...');
-    const fileArticles = getArticlesFromFile();
-    
-    if (fileArticles && fileArticles.length > 0) {
-      return NextResponse.json({ articles: fileArticles, source: 'file' });
-    }
-    
     return NextResponse.json({ 
       articles: [],
-      message: '尚未抓取文章'
+      message: '数据库中暂无文章'
     });
     
   } catch (error) {

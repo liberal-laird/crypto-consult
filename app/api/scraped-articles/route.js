@@ -1,19 +1,23 @@
 import { NextResponse } from 'next/server';
 
-const SUPABASE_URL = 'https://fokilsfcnablraexmtju.supabase.co';
-const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZva2lsc2ZjbmFibHJhZXhtdGp1Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3MDQ4MDgwMCwiZXhwIjoyMDg1OTc2ODAwfQ.IJBK-_22D5xfkIM6bKCPjG2GYzQH8Vouq_clpN8aYVw';
+// 从环境变量获取 Supabase 配置
+const SUPABASE_URL = process.env.SUPABASE_URL || 'https://fokilsfcnablraexmtju.supabase.co';
+const SUPABASE_SECRET = process.env.SUPABASE_SECRET_KEY || '';
 
 async function getArticlesFromDB() {
   try {
-    // 使用 Supabase REST API 直接查询
+    if (!SUPABASE_SECRET) {
+      console.error('SUPABASE_SECRET_KEY 未配置');
+      return [];
+    }
+    
     const url = `${SUPABASE_URL}/rest/v1/articles?status=eq.published&order=published_at.desc&select=*`;
     
     const response = await fetch(url, {
       headers: {
-        'Authorization': `Bearer ${SUPABASE_KEY}`,
-        'apikey': SUPABASE_KEY,
-        'Content-Type': 'application/json',
-        'Range': '0-100'
+        'Authorization': `Bearer ${SUPABASE_SECRET}`,
+        'apikey': SUPABASE_SECRET,
+        'Content-Type': 'application/json'
       }
     });
     

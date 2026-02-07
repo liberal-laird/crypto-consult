@@ -4,7 +4,6 @@ import path from 'path';
 
 const REWRITTEN_FILE = path.join(process.cwd(), '..', '.openclaw', 'workspace', 'scrapers', 'rewritten_articles.json');
 const PUBLIC_FILE = path.join(process.cwd(), 'public', 'rewritten_articles.json');
-const LOCAL_ARTICLES_FILE = path.join(process.cwd(), 'public', 'articles', 'local-articles.json');
 
 export async function GET(request, { params }) {
   const { slug } = await params;
@@ -12,30 +11,7 @@ export async function GET(request, { params }) {
   try {
     let article = null;
     
-    // Check local articles first (for original content)
-    if (fs.existsSync(LOCAL_ARTICLES_FILE)) {
-      const localData = JSON.parse(fs.readFileSync(LOCAL_ARTICLES_FILE, 'utf8'));
-      article = localData.find(a => a.slug === slug);
-      
-      if (article) {
-        return NextResponse.json({
-          id: article.id,
-          slug: article.slug,
-          title: article.title,
-          originalTitle: article.originalTitle,
-          content: formatContent(article.content),
-          excerpt: article.excerpt,
-          publishedAt: article.publishedAt,
-          source: article.source,
-          originalUrl: article.originalUrl,
-          wordCount: article.wordCount,
-          rewrittenAt: article.publishedAt,
-          isLocal: true
-        });
-      }
-    }
-    
-    // Try rewritten articles from scrapers
+    // Try rewritten articles from scrapers (public folder first, then workspace)
     let filePath = PUBLIC_FILE;
     if (!fs.existsSync(filePath)) {
       filePath = REWRITTEN_FILE;

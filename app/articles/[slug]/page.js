@@ -38,19 +38,6 @@ export default function ArticleDetailPage() {
         '@type': 'Article',
         headline: article.title,
         description: article.excerpt,
-        author: {
-          '@type': 'Organization',
-          name: 'CryptoA8King',
-          url: 'https://crypto-consult-seven.vercel.app'
-        },
-        publisher: {
-          '@type': 'Organization',
-          name: 'CryptoA8King',
-          logo: {
-            '@type': 'ImageObject',
-            url: 'https://crypto-consult-seven.vercel.app/icon.svg'
-          }
-        },
         datePublished: article.publishedAt,
         dateModified: article.rewrittenAt || article.publishedAt,
         mainEntityOfPage: {

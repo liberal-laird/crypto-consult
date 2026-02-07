@@ -23,40 +23,7 @@ export default function ArticlesPage() {
     fetchArticles();
   }, []);
 
-  const localArticles = [
-    {
-      id: 'local-1',
-      title: '2024年比特幣減半解讀：歷史數據與未來展望',
-      slug: 'bitcoin-halving-2024',
-      summary: '深入分析比特幣減半的歷史規律、價格走勢以及對2024年減半的預測。',
-      category: '比特幣',
-      author: 'CryptoA8King',
-      created_at: '2024-01-15',
-      isLocal: true
-    },
-    {
-      id: 'local-2',
-      title: 'DeFi 入門指南：去中心化金融詳解',
-      slug: 'defi-guide-beginners',
-      summary: '全面介紹 DeFi（去中心化金融）的概念、主要協議和投資機會。',
-      category: 'DeFi',
-      author: 'CryptoA8King',
-      created_at: '2024-01-20',
-      isLocal: true
-    },
-    {
-      id: 'local-3',
-      title: 'Layer 2 解決方案詳解：比特幣與以太坊擴容',
-      slug: 'layer2-scaling-solutions',
-      summary: '比較分析主流 Layer 2 擴容方案，包括閃電網絡、Arbitrum、Optimism 等。',
-      category: '技術',
-      author: 'CryptoA8King',
-      created_at: '2024-01-25',
-      isLocal: true
-    }
-  ];
-
-  const allArticles = [...localArticles, ...articles];
+  const allArticles = [...articles];
 
   const filteredArticles = filter === 'all' 
     ? allArticles 
@@ -217,27 +184,14 @@ export default function ArticlesPage() {
                     marginBottom: '0.75rem'
                   }}>
                     <span style={{ 
-                      background: article.isLocal 
-                        ? 'rgba(247, 147, 26, 0.2)' 
-                        : 'rgba(98, 126, 234, 0.2)',
-                      color: article.isLocal ? '#f7931a' : '#627eea',
+                      background: 'rgba(98, 126, 234, 0.2)',
+                      color: '#627eea',
                       padding: '0.25rem 0.75rem',
                       borderRadius: '20px',
                       fontSize: '0.8rem'
                     }}>
                       {article.category}
                     </span>
-                    {article.isLocal && (
-                      <span style={{ 
-                        background: 'rgba(46, 160, 67, 0.2)',
-                        color: '#2ea043',
-                        padding: '0.2rem 0.5rem',
-                        borderRadius: '4px',
-                        fontSize: '0.7rem'
-                      }}>
-                        本地
-                      </span>
-                    )}
                   </div>
                   
                   <h3 style={{ 
@@ -275,7 +229,6 @@ export default function ArticlesPage() {
                     color: '#6e7681',
                     fontSize: '0.8rem'
                   }}>
-                    <span>✍️ {article.author}</span>
                     <span>📅 {formatDate(article.created_at || article.published_at)}</span>
                   </div>
                 </div>

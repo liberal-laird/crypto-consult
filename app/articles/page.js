@@ -3,25 +3,57 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
+const ITEMS_PER_PAGE = 30;
+
 export default function ArticlesPage() {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState('all');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalArticles, setTotalArticles] = useState(0);
 
   useEffect(() => {
     async function fetchArticles() {
       try {
-        const res = await fetch('/api/scraped-articles');
+        // 分页请求：只获取当前页的数据
+        const res = await fetch(`/api/scraped-articles?page=${currentPage}&limit=${ITEMS_PER_PAGE}`);
         const data = await res.json();
-        setArticles(data.articles || []);
+        
+        // 如果后端返回总数，设置总数；否则根据数据估算
+        if (data.pagination) {
+          setArticles(data.articles || []);
+          setTotalArticles(data.pagination.total || data.articles?.length || 0);
+        } else {
+          // 兼容旧API：手动计算分页
+          const allArticles = data.articles || [];
+          setTotalArticles(allArticles.length);
+          
+          // 计算当前页应该显示的数据
+          const start = (currentPage - 1) * ITEMS_PER_PAGE;
+          const end = start + ITEMS_PER_PAGE;
+          setArticles(allArticles.slice(start, end));
+        }
       } catch (error) {
         console.error('Failed to fetch articles:', error);
+        // 降级：获取全部（向后兼容）
+        try {
+          const res = await fetch('/api/scraped-articles');
+          const data = await res.json();
+          const allArticles = data.articles || [];
+          setTotalArticles(allArticles.length);
+          const start = (currentPage - 1) * ITEMS_PER_PAGE;
+          const end = start + ITEMS_PER_PAGE;
+          setArticles(allArticles.slice(start, end));
+        } catch (e) {
+          console.error('Fallback also failed:', e);
+        }
       } finally {
         setLoading(false);
       }
     }
+    
     fetchArticles();
-  }, []);
+  }, [currentPage]);
 
   const allArticles = [...articles];
 
@@ -43,6 +75,7 @@ export default function ArticlesPage() {
   };
 
   const categories = ['all', '比特幣', 'DeFi', '技術', '新聞', '投資', 'MICA分析'];
+  const totalPages = Math.ceil(totalArticles / ITEMS_PER_PAGE);
 
   return (
     <main style={{ 
@@ -63,10 +96,10 @@ export default function ArticlesPage() {
             url: 'https://crypto-consult-seven.vercel.app/articles',
             mainEntity: {
               '@type': 'ItemList',
-              numberOfItems: allArticles.length,
-              itemListElement: allArticles.map((article, index) => ({
+              numberOfItems: filteredArticles.length,
+              itemListElement: filteredArticles.map((article, index) => ({
                 '@type': 'ListItem',
-                position: index + 1,
+                position: (currentPage - 1) * ITEMS_PER_PAGE + index + 1,
                 item: {
                   '@type': 'Article',
                   name: article.title,
@@ -133,7 +166,10 @@ export default function ArticlesPage() {
           {categories.map(cat => (
             <button
               key={cat}
-              onClick={() => setFilter(cat)}
+              onClick={() => {
+                setFilter(cat);
+                setCurrentPage(1); // 重置到第一页
+              }}
               style={{
                 padding: '0.5rem 1.25rem',
                 borderRadius: '20px',
@@ -246,6 +282,62 @@ export default function ArticlesPage() {
           }}>
             <div style={{ fontSize: '2rem', marginBottom: '1rem' }}>📭</div>
             沒有找到相關文章
+          </div>
+        )}
+
+        {/* Pagination */}
+        {!loading && totalPages > 1 && (
+          <div style={{ 
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            gap: '1rem',
+            marginTop: '2rem',
+            padding: '1.5rem 0'
+          }}>
+            {/* Previous Page */}
+            <button
+              onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+              disabled={currentPage === 1}
+              style={{
+                padding: '0.75rem 1.5rem',
+                borderRadius: '8px',
+                border: '1px solid #30363d',
+                background: currentPage === 1 ? 'transparent' : '#161b22',
+                color: currentPage === 1 ? '#6e7681' : '#ffffff',
+                cursor: currentPage === 1 ? 'not-allowed' : 'pointer',
+                fontSize: '0.9rem',
+                transition: 'all 0.2s'
+              }}
+            >
+              ← 上一頁
+            </button>
+            
+            {/* Page Info */}
+            <span style={{ color: '#8b949e' }}>
+              第 {currentPage} / {totalPages} 頁
+              <span style={{ marginLeft: '1rem', fontSize: '0.85rem' }}>
+                (共 {totalArticles} 篇)
+              </span>
+            </span>
+            
+            {/* Next Page */}
+            <button
+              onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+              disabled={currentPage === totalPages}
+              style={{
+                padding: '0.75rem 1.5rem',
+                borderRadius: '8px',
+                border: '1px solid #30363d',
+                background: currentPage === totalPages ? 'transparent' : '#161b22',
+                color: currentPage === totalPages ? '#6e7681' : '#ffffff',
+                cursor: currentPage === totalPages ? 'not-allowed' : 'pointer',
+                fontSize: '0.9rem',
+                transition: 'all 0.2s'
+              }}
+            >
+              更多文章 →
+            </button>
           </div>
         )}
       </section>

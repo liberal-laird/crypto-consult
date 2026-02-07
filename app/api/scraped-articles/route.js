@@ -33,6 +33,7 @@ async function getArticlesFromDB() {
       id: row.id,
       title: row.rewritten_title,
       slug: row.slug,
+      md5: row.md5_hash,
       summary: row.excerpt || row.rewritten_title,
       category: row.categories?.[0] || '新聞',
       author: 'Blockcast',

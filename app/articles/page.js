@@ -70,7 +70,7 @@ export default function ArticlesPage() {
                 item: {
                   '@type': 'Article',
                   name: article.title,
-                  url: `https://crypto-consult-seven.vercel.app/articles/${encodeURIComponent(article.slug)}`,
+                  url: `https://crypto-consult-seven.vercel.app/articles/${article.md5 || article.id}`,
                   description: article.summary || article.excerpt,
                   articleSection: article.category
                 }
@@ -199,9 +199,9 @@ export default function ArticlesPage() {
                     marginBottom: '0.75rem',
                     lineHeight: 1.4
                   }}>
-                    {article.slug ? (
+                    {article.md5 || article.id ? (
                       <Link 
-                        href={`/articles/${encodeURIComponent(article.slug)}`}
+                        href={`/articles/${encodeURIComponent(article.md5 || article.id)}`}
                         style={{ 
                           color: '#ffffff', 
                           textDecoration: 'none' 

@@ -7,21 +7,21 @@
     <loc>https://www.a8king.com/</loc>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
-    <lastmod>2026-02-06</lastmod>
+    <lastmod>2026-02-08</lastmod>
   </url>
   
   <url>
     <loc>https://www.a8king.com/articles</loc>
     <changefreq>hourly</changefreq>
     <priority>0.9</priority>
-    <lastmod>2026-02-06</lastmod>
+    <lastmod>2026-02-08</lastmod>
   </url>
   
   <url>
     <loc>https://www.a8king.com/market</loc>
     <changefreq>hourly</changefreq>
     <priority>0.8</priority>
-    <lastmod>2026-02-06</lastmod>
+    <lastmod>2026-02-08</lastmod>
   </url>
   
   <url>
@@ -29,10 +29,220 @@
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
+
   
-  <!-- Main Articles -->
   <url>
-    <loc>https://www.a8king.com/articles/bitcoin-halving-2024</loc>
+    <loc>https://www.a8king.com/articles/2026/02/06/bitcoin-rises-to-usd70-000-extending-bounce-from-thursday-s-crash</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-02-07</lastmod>
+    <news:news>
+      <news:publication>
+        <news:name>CryptoA8King</news:name>
+        <news:language>zh</news:language>
+      </news:publication>
+      <news:publication_date>2026-02-07</news:publication_date>
+      <news:title>比特幣價格回升至7萬美元以上，延續了週四暴跌後的反彈走勢。</news:title>
+    </news:news>
+  </url>
+  
+  <url>
+    <loc>https://www.a8king.com/articles/2026/02/06/ripple-lays-out-institutional-defi-blueprint-for-xrpl-with-xrp-at-center</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-02-07</lastmod>
+    <news:news>
+      <news:publication>
+        <news:name>CryptoA8King</news:name>
+        <news:language>zh</news:language>
+      </news:publication>
+      <news:publication_date>2026-02-07</news:publication_date>
+      <news:title>隨著Ripple為XRPL制定機構DeFi藍圖，XRP成為焦點</news:title>
+    </news:news>
+  </url>
+  
+  <url>
+    <loc>https://www.a8king.com/articles/2026/02/06/citi-cuts-coinbase-price-target-to-usd400-after-stock-s-65-plunge-from-record-high</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-02-07</lastmod>
+    <news:news>
+      <news:publication>
+        <news:name>CryptoA8King</news:name>
+        <news:language>zh</news:language>
+      </news:publication>
+      <news:publication_date>2026-02-07</news:publication_date>
+      <news:title>花旗集團將Coinbase目標股價下調至400美元，此前該股已從歷史高點暴跌65%</news:title>
+    </news:news>
+  </url>
+  
+  <url>
+    <loc>https://www.a8king.com/articles/2026/02/06/crypto-markets-rebound-from-selloff-that-sent-bitcoin-to-lowest-since-october-2024</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-02-07</lastmod>
+    <news:news>
+      <news:publication>
+        <news:name>CryptoA8King</news:name>
+        <news:language>zh</news:language>
+      </news:publication>
+      <news:publication_date>2026-02-07</news:publication_date>
+      <news:title>加密貨幣市場在經歷拋售後迎來曙光，比特幣價格曾跌至2024年10月以來最低點</news:title>
+    </news:news>
+  </url>
+  
+  <url>
+    <loc>https://www.a8king.com/articles/2026/02/06/bitwise-says-peak-anxiety-signals-crypto-market-is-nearing-a-bottom</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-02-07</lastmod>
+    <news:news>
+      <news:publication>
+        <news:name>CryptoA8King</news:name>
+        <news:language>zh</news:language>
+      </news:publication>
+      <news:publication_date>2026-02-07</news:publication_date>
+      <news:title>Bitwise表示，市場的極度焦慮訊號顯示加密貨幣市場正接近底部。</news:title>
+    </news:news>
+  </url>
+  
+  <url>
+    <loc>https://www.a8king.com/articles/2026/02/06/record-breaking-stats-from-bitcoin-s-thursday-capitulation-signal-a-bottom-is-near</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-02-07</lastmod>
+    <news:news>
+      <news:publication>
+        <news:name>CryptoA8King</news:name>
+        <news:language>zh</news:language>
+      </news:publication>
+      <news:publication_date>2026-02-07</news:publication_date>
+      <news:title>比特幣週四創紀錄的投降數據顯示底部已近</news:title>
+    </news:news>
+  </url>
+  
+  <url>
+    <loc>https://www.a8king.com/articles/2026/02/06/ark-invest-sells-usd17m-of-coinbase-stock-buys-usd18m-of-bullish-amid-crypto-market-chaos</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-02-07</lastmod>
+    <news:news>
+      <news:publication>
+        <news:name>CryptoA8King</news:name>
+        <news:language>zh</news:language>
+      </news:publication>
+      <news:publication_date>2026-02-07</news:publication_date>
+      <news:title>ARK 在加密貨幣市場暴跌中拋售 1700 萬美元 Coinbase 股票，同時增持 1800 萬美元 Bullish 股份</news:title>
+    </news:news>
+  </url>
+  
+  <url>
+    <loc>https://www.a8king.com/articles/2026/02/06/broad-based-bitcoin-accumulation-emerges-after-sharp-capitulation</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-02-07</lastmod>
+    <news:news>
+      <news:publication>
+        <news:name>CryptoA8King</news:name>
+        <news:language>zh</news:language>
+      </news:publication>
+      <news:publication_date>2026-02-07</news:publication_date>
+      <news:title>在劇烈拋售後，比特幣出現廣泛的累積現象</news:title>
+    </news:news>
+  </url>
+  
+  <url>
+    <loc>https://www.a8king.com/articles/2026/02/06/here-s-what-wall-street-analysts-are-saying-about-strategy-after-massive-q4-loss</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-02-07</lastmod>
+    <news:news>
+      <news:publication>
+        <news:name>CryptoA8King</news:name>
+        <news:language>zh</news:language>
+      </news:publication>
+      <news:publication_date>2026-02-07</news:publication_date>
+      <news:title>華爾街分析師對該公司第四季度巨額虧損後的策略有何看法</news:title>
+    </news:news>
+  </url>
+  
+  <url>
+    <loc>https://www.a8king.com/articles/2026/02/06/xrp-price-rockets-18-staging-wildest-recovery-among-major-tokens</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-02-07</lastmod>
+    <news:news>
+      <news:publication>
+        <news:name>CryptoA8King</news:name>
+        <news:language>zh</news:language>
+      </news:publication>
+      <news:publication_date>2026-02-07</news:publication_date>
+      <news:title>XRP價格飆升18%，在主要加密貨幣中上演最狂野的復甦行情</news:title>
+    </news:news>
+  </url>
+  
+  <url>
+    <loc>https://www.a8king.com/articles/2026/02/07/bitcoin-falls-below-usd70-000-after-erasing-post-election-gains-during-sell-at-any-price-rout</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-02-07</lastmod>
+    <news:news>
+      <news:publication>
+        <news:name>CryptoA8King</news:name>
+        <news:language>zh</news:language>
+      </news:publication>
+      <news:publication_date>2026-02-07</news:publication_date>
+      <news:title>比特幣在「不惜代價拋售」的暴跌中抹去選後漲幅，跌破7萬美元關卡。</news:title>
+    </news:news>
+  </url>
+  
+  <url>
+    <loc>https://www.a8king.com/articles/2026/02/07/bitcoin-s-50-drop-isn-t-a-crisis-says-hedge-fund-veteran-gary-bode</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-02-07</lastmod>
+    <news:news>
+      <news:publication>
+        <news:name>CryptoA8King</news:name>
+        <news:language>zh</news:language>
+      </news:publication>
+      <news:publication_date>2026-02-07</news:publication_date>
+      <news:title>對沖基金老手蓋瑞·博德表示，比特幣價格暴跌50%並非危機。</news:title>
+    </news:news>
+  </url>
+  
+  <url>
+    <loc>https://www.a8king.com/articles/2026/02/07/blackrock-bitcoin-etf-options-errupt-in-crash-hedge-fund-blowup-or-just-market-madness</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-02-07</lastmod>
+    <news:news>
+      <news:publication>
+        <news:name>CryptoA8King</news:name>
+        <news:language>zh</news:language>
+      </news:publication>
+      <news:publication_date>2026-02-07</news:publication_date>
+      <news:title>在比特幣價格暴跌期間，貝萊德比特幣ETF期權交易量創下歷史新高，引發市場猜測對沖基金可能出現重大虧損。</news:title>
+    </news:news>
+  </url>
+  
+  <url>
+    <loc>https://www.a8king.com/articles/2026/02/06/galaxy-digital-shares-jump-18-after-company-approves-usd200-million-buyback</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-02-07</lastmod>
+    <news:news>
+      <news:publication>
+        <news:name>CryptoA8King</news:name>
+        <news:language>zh</news:language>
+      </news:publication>
+      <news:publication_date>2026-02-07</news:publication_date>
+      <news:title>Galaxy Digital股價飆升18%，公司批准2億美元回購計劃</news:title>
+    </news:news>
+  </url>
+  
+  <url>
+    <loc>https://www.a8king.com/articles/strategy-posts-12-6-billion-q4-loss-as-bitcoin-slide</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <lastmod>2026-02-06</lastmod>
@@ -41,38 +251,233 @@
         <news:name>CryptoA8King</news:name>
         <news:language>zh</news:language>
       </news:publication>
-      <news:publication_date>2024-01-15</news:publication_date>
-      <news:title>2024年比特幣減半解讀：歷史數據與未來展望</news:title>
+      <news:publication_date>2026-02-06</news:publication_date>
+      <news:title>比特幣崩跌、Strategy 慘虧 126 億美元！創辦人高呼「HODL」堅定信仰</news:title>
     </news:news>
   </url>
   
   <url>
-    <loc>https://www.a8king.com/articles/defi-guide-beginners</loc>
+    <loc>https://www.a8king.com/articles/bitcoin-flash-crash-traders-refuse-to-catch-falling-knives</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
-    <lastmod>2024-01-20</lastmod>
+    <lastmod>2026-02-06</lastmod>
     <news:news>
       <news:publication>
         <news:name>CryptoA8King</news:name>
         <news:language>zh</news:language>
       </news:publication>
-      <news:publication_date>2024-01-20</news:publication_date>
-      <news:title>DeFi 入門指南：去中心化金融詳解</news:title>
+      <news:publication_date>2026-02-06</news:publication_date>
+      <news:title>📊 沒人敢抄底！比特幣較歷史高點跌近 50%，分析師曝後市「翻身關鍵」</news:title>
     </news:news>
   </url>
   
   <url>
-    <loc>https://www.a8king.com/articles/layer2-scaling-solutions</loc>
+    <loc>https://www.a8king.com/articles/mica-daily-260206</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
-    <lastmod>2024-01-25</lastmod>
+    <lastmod>2026-02-06</lastmod>
     <news:news>
       <news:publication>
         <news:name>CryptoA8King</news:name>
         <news:language>zh</news:language>
       </news:publication>
-      <news:publication_date>2024-01-25</news:publication_date>
-      <news:title>Layer 2 解決方案詳解：比特幣與以太坊擴容</news:title>
+      <news:publication_date>2026-02-06</news:publication_date>
+      <news:title>⚡ MICA Daily｜BTC 市場週期信號：5.4 萬美元才是最終底部？</news:title>
+    </news:news>
+  </url>
+  
+  <url>
+    <loc>https://www.a8king.com/articles/jpmorgan-says-bitcoin-could-reach-266000-long-term</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-02-06</lastmod>
+    <news:news>
+      <news:publication>
+        <news:name>CryptoA8King</news:name>
+        <news:language>zh</news:language>
+      </news:publication>
+      <news:publication_date>2026-02-06</news:publication_date>
+      <news:title>🔥 投資性價比勝過黃金！摩根大通喊話：比特幣長期上看 26.6 萬美元</news:title>
+    </news:news>
+  </url>
+  
+  <url>
+    <loc>https://www.a8king.com/articles/bitcoin-is-the-third-most-oversold-ever-violent-upside-could-be-next</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-02-06</lastmod>
+    <news:news>
+      <news:publication>
+        <news:name>CryptoA8King</news:name>
+        <news:language>zh</news:language>
+      </news:publication>
+      <news:publication_date>2026-02-06</news:publication_date>
+      <news:title>飆漲行情醞釀中？技術指標：比特幣進入「史上第 3 大超賣區」</news:title>
+    </news:news>
+  </url>
+  
+  <url>
+    <loc>https://www.a8king.com/articles/world-liberty-financial-offloads-bitcoin-to-pay-aave-loan</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-02-06</lastmod>
+    <news:news>
+      <news:publication>
+        <news:name>CryptoA8King</news:name>
+        <news:language>zh</news:language>
+      </news:publication>
+      <news:publication_date>2026-02-06</news:publication_date>
+      <news:title>💰 面臨 Aave 清算風險！World Liberty Financial 拋售比特幣急救火</news:title>
+    </news:news>
+  </url>
+  
+  <url>
+    <loc>https://www.a8king.com/articles/cme-group-says-tokenized-cash-coin-developed-with-google-to-roll-out-this-year</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-02-05</lastmod>
+    <news:news>
+      <news:publication>
+        <news:name>CryptoA8King</news:name>
+        <news:language>zh</news:language>
+      </news:publication>
+      <news:publication_date>2026-02-05</news:publication_date>
+      <news:title>最快今年推出！芝商所證實：正與 Google 合作開發「代幣化現金」</news:title>
+    </news:news>
+  </url>
+  
+  <url>
+    <loc>https://www.a8king.com/articles/analyst-slashs-price-target-on-mstr-by-more-than-60prcnt</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-02-05</lastmod>
+    <news:news>
+      <news:publication>
+        <news:name>CryptoA8King</news:name>
+        <news:language>zh</news:language>
+      </news:publication>
+      <news:publication_date>2026-02-05</news:publication_date>
+      <news:title>MSTR 較歷史高點暴跌 72%！投行喊「買進」目標價卻暴砍 61%</news:title>
+    </news:news>
+  </url>
+  
+  <url>
+    <loc>https://www.a8king.com/articles/mica-daily-260205</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-02-05</lastmod>
+    <news:news>
+      <news:publication>
+        <news:name>CryptoA8King</news:name>
+        <news:language>zh</news:language>
+      </news:publication>
+      <news:publication_date>2026-02-05</news:publication_date>
+      <news:title>MICA Daily｜美股大跌、幣市再被血洗，ETH 險破 2,000 美元</news:title>
+    </news:news>
+  </url>
+  
+  <url>
+    <loc>https://www.a8king.com/articles/bhutan-moves-bitcoin-to-trading-firms-and-exchanges</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-02-05</lastmod>
+    <news:news>
+      <news:publication>
+        <news:name>CryptoA8King</news:name>
+        <news:language>zh</news:language>
+      </news:publication>
+      <news:publication_date>2026-02-05</news:publication_date>
+      <news:title>📈 幣市震盪！不丹政府轉出 184 枚比特幣，流向幣安、交易機構</news:title>
+    </news:news>
+  </url>
+  
+  <url>
+    <loc>https://www.a8king.com/articles/what-makes-this-crypto-winter-different</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-02-05</lastmod>
+    <news:news>
+      <news:publication>
+        <news:name>CryptoA8King</news:name>
+        <news:language>zh</news:language>
+      </news:publication>
+      <news:publication_date>2026-02-05</news:publication_date>
+      <news:title>現在是加密貨幣寒冬嗎？監管改革後的市場轉變</news:title>
+    </news:news>
+  </url>
+  
+  <url>
+    <loc>https://www.a8king.com/articles/insolvency-rumors-fake-letters-withdrawal-calls-binance-pushes-back-against-fud</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-02-05</lastmod>
+    <news:news>
+      <news:publication>
+        <news:name>CryptoA8King</news:name>
+        <news:language>zh</news:language>
+      </news:publication>
+      <news:publication_date>2026-02-05</news:publication_date>
+      <news:title>誰在帶風向？破產謠言、假文件、集體提幣潮，幣安正面迎戰 FUD 風暴</news:title>
+    </news:news>
+  </url>
+  
+  <url>
+    <loc>https://www.a8king.com/articles/win-or-die-in-15-minutes-inside-bitcoins-brutal-prediction-market</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-02-05</lastmod>
+    <news:news>
+      <news:publication>
+        <news:name>CryptoA8King</news:name>
+        <news:language>zh</news:language>
+      </news:publication>
+      <news:publication_date>2026-02-05</news:publication_date>
+      <news:title>🔥 15 分鐘定生死：百萬筆交易揭開比特幣預測市場的「殘酷真相」</news:title>
+    </news:news>
+  </url>
+  
+  <url>
+    <loc>https://www.a8king.com/articles/this-metric-has-identified-the-bitcoin-bottom-every-cycle</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-02-05</lastmod>
+    <news:news>
+      <news:publication>
+        <news:name>CryptoA8King</news:name>
+        <news:language>zh</news:language>
+      </news:publication>
+      <news:publication_date>2026-02-05</news:publication_date>
+      <news:title>抄底比特幣別亂猜！「這項指標」曾精準抓出歷次熊市底部</news:title>
+    </news:news>
+  </url>
+  
+  <url>
+    <loc>https://www.a8king.com/articles/btc-slides-below-71000-to-lowest-level-since-october-2024</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-02-05</lastmod>
+    <news:news>
+      <news:publication>
+        <news:name>CryptoA8King</news:name>
+        <news:language>zh</news:language>
+      </news:publication>
+      <news:publication_date>2026-02-05</news:publication_date>
+      <news:title>比特幣失守 7.1 萬美元關卡！創 2024 年 10 月以來新低、恐慌情緒席捲幣市</news:title>
+    </news:news>
+  </url>
+  
+  <url>
+    <loc>https://www.a8king.com/articles/house-probe-targets-wlfi-following-reports-of-emirati-backing</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-02-05</lastmod>
+    <news:news>
+      <news:publication>
+        <news:name>CryptoA8King</news:name>
+        <news:language>zh</news:language>
+      </news:publication>
+      <news:publication_date>2026-02-05</news:publication_date>
+      <news:title>神秘阿聯公司投資 5 億美元入股！美眾院介入調查  World Liberty Financial</news:title>
     </news:news>
   </url>
   

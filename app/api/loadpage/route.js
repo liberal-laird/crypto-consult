@@ -10,12 +10,13 @@ export async function GET() {
   try {
     await dbClient.connect();
     
-    // 获取所有已发布文章的 md5_hash
+    // 获取所有已发布文章的 md5_hash 或 slug
     const result = await dbClient.query(`
-      SELECT md5_hash FROM articles 
+      SELECT COALESCE(md5_hash, slug) as identifier FROM articles 
       WHERE status = 'published' 
-      AND md5_hash IS NOT NULL
+      AND (md5_hash IS NOT NULL OR slug IS NOT NULL)
       ORDER BY RANDOM()
+      LIMIT 1
     `);
     
     await dbClient.end();
@@ -24,11 +25,11 @@ export async function GET() {
       return NextResponse.redirect(new URL('/', 'https://www.a8king.com'));
     }
     
-    // 随机选择一个 md5_hash
-    const md5Hash = result.rows[0].md5_hash;
+    // 随机选择一个标识符 (md5_hash 或 slug)
+    const identifier = result.rows[0].identifier;
     
     // 302 跳转到文章页面
-    const articleUrl = new URL(`/articles/${md5Hash}`, 'https://www.a8king.com');
+    const articleUrl = new URL(`/articles/${identifier}`, 'https://www.a8king.com');
     
     return NextResponse.redirect(articleUrl, 302);
     

@@ -234,8 +234,8 @@ export default function ArticleDetailPage() {
         }}>
           {Array.isArray(article.content) ? (
             <>
-              {article.content.map((item, index) => (
-                <React.Fragment key={index}>
+              {article.content.map((item) => (
+                <React.Fragment key={item.text}>
                   {item.type === 'h2' ? (
                       <h2 style={{ 
                         fontSize: '1.4rem', 
@@ -257,9 +257,8 @@ export default function ArticleDetailPage() {
                     ) : (
                       <p style={{ marginBottom: '1rem' }}>{item.text}</p>
                     )}
-                  </React.Fragment>
-                );
-              })}
+                </React.Fragment>
+              ))}
               {/* 广告脚本 */}
               <script
                 async

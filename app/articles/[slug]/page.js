@@ -190,6 +190,18 @@ export default function ArticleDetailPage() {
           {article.title}
         </h1>
 
+        {/* Ad - Fixed at top of article content */}
+        <div style={{ margin: '1.5rem 0', textAlign: 'center' }}>
+          <ins
+            className="adsbygoogle"
+            style={{ display: 'block', margin: '0 auto' }}
+            data-ad-client="ca-pub-4522670236044605"
+            data-ad-slot="7309209376"
+            data-ad-format="horizontal"
+            data-full-width-responsive="true"
+          />
+        </div>
+
         {/* Original Title */}
         {article.originalTitle !== article.title && (
           <p style={{ 
@@ -222,25 +234,9 @@ export default function ArticleDetailPage() {
         }}>
           {Array.isArray(article.content) ? (
             <>
-              {article.content.map((item, index) => {
-                // 在文章中间插入广告 (内容长度超过6段时)
-                const showAd = article.content.length > 6 && index === Math.floor(article.content.length / 2);
-                
-                return (
-                  <React.Fragment key={index}>
-                    {index === showAd && (
-                      <div style={{ margin: '2rem 0' }}>
-                        <ins
-                          className="adsbygoogle"
-                          style={{ display: 'block' }}
-                          data-ad-client="ca-pub-4522670236044605"
-                          data-ad-slot="7309209376"
-                          data-ad-format="auto"
-                          data-full-width-responsive="true"
-                        />
-                      </div>
-                    )}
-                    {item.type === 'h2' ? (
+              {article.content.map((item, index) => (
+                <React.Fragment key={index}>
+                  {item.type === 'h2' ? (
                       <h2 style={{ 
                         fontSize: '1.4rem', 
                         marginTop: '2rem', 

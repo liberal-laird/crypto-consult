@@ -21,14 +21,14 @@ export async function GET() {
     await dbClient.end();
     
     if (result.rows.length === 0) {
-      return NextResponse.redirect(new URL('/', process.env.NEXT_PUBLIC_SITE_URL || 'https://crypto-consult-seven.vercel.app'));
+      return NextResponse.redirect(new URL('/', 'https://www.a8king.com'));
     }
     
     // 随机选择一个slug
     const randomSlug = result.rows[0].slug;
     
     // 302 跳转到文章页面
-    const articleUrl = new URL(`/articles/${randomSlug}`, process.env.NEXT_PUBLIC_SITE_URL || 'https://crypto-consult-seven.vercel.app');
+    const articleUrl = new URL(`/articles/${randomSlug}`, 'https://www.a8king.com');
     
     return NextResponse.redirect(articleUrl, 302);
     
@@ -36,6 +36,6 @@ export async function GET() {
     console.error('Load page error:', error);
     
     // 出错时跳转到首页
-    return NextResponse.redirect(new URL('/', process.env.NEXT_PUBLIC_SITE_URL || 'https://crypto-consult-seven.vercel.app'));
+    return NextResponse.redirect(new URL('/', 'https://www.a8king.com'));
   }
 }

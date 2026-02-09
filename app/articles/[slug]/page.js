@@ -234,31 +234,37 @@ export default function ArticleDetailPage() {
         }}>
           {Array.isArray(article.content) ? (
             <>
-              {article.content.map((item) => (
-                <React.Fragment key={item.text}>
-                  {item.type === 'h2' ? (
-                      <h2 style={{ 
-                        fontSize: '1.4rem', 
-                        marginTop: '2rem', 
-                        marginBottom: '1rem',
-                        color: '#f7931a',
-                        fontWeight: 600
-                      }}>
-                        {item.text}
-                      </h2>
-                    ) : item.type === 'list' ? (
-                      <li style={{ 
-                        marginLeft: '1.5rem', 
-                        marginBottom: '0.5rem',
-                        color: '#d0d7de'
-                      }}>
-                        {item.text}
-                      </li>
-                    ) : (
-                      <p style={{ marginBottom: '1rem' }}>{item.text}</p>
-                    )}
-                </React.Fragment>
-              ))}
+              {article.content.map((item) => {
+                let contentElement;
+                if (item.type === 'h2') {
+                  contentElement = (
+                    <h2 style={{ 
+                      fontSize: '1.4rem', 
+                      marginTop: '2rem', 
+                      marginBottom: '1rem',
+                      color: '#f7931a',
+                      fontWeight: 600
+                    }}>
+                      {item.text}
+                    </h2>
+                  );
+                } else if (item.type === 'list') {
+                  contentElement = (
+                    <li style={{ 
+                      marginLeft: '1.5rem', 
+                      marginBottom: '0.5rem',
+                      color: '#d0d7de'
+                    }}>
+                      {item.text}
+                    </li>
+                  );
+                } else {
+                  contentElement = (
+                    <p style={{ marginBottom: '1rem' }}>{item.text}</p>
+                  );
+                }
+                return <React.Fragment key={item.text}>{contentElement}</React.Fragment>;
+              })}
               {/* 广告脚本 */}
               <script
                 async

@@ -7,21 +7,21 @@
     <loc>https://www.a8king.com/</loc>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
-    <lastmod>2026-02-08</lastmod>
+    <lastmod>2026-02-09</lastmod>
   </url>
   
   <url>
     <loc>https://www.a8king.com/articles</loc>
     <changefreq>hourly</changefreq>
     <priority>0.9</priority>
-    <lastmod>2026-02-08</lastmod>
+    <lastmod>2026-02-09</lastmod>
   </url>
   
   <url>
     <loc>https://www.a8king.com/market</loc>
     <changefreq>hourly</changefreq>
     <priority>0.8</priority>
-    <lastmod>2026-02-08</lastmod>
+    <lastmod>2026-02-09</lastmod>
   </url>
   
   <url>
@@ -30,6 +30,21 @@
     <priority>0.7</priority>
   </url>
 
+  
+  <url>
+    <loc>https://www.a8king.com/articles/2026/02/07/cardano-s-charles-hoskinson-reveals-usd3-billion-unrealized-loss-in-crypto-rout</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-02-07</lastmod>
+    <news:news>
+      <news:publication>
+        <news:name>CryptoA8King</news:name>
+        <news:language>zh</news:language>
+      </news:publication>
+      <news:publication_date>2026-02-07</news:publication_date>
+      <news:title>卡爾達諾創辦人查爾斯·霍斯金森揭露加密貨幣暴跌中承受30億美元未實現虧損</news:title>
+    </news:news>
+  </url>
   
   <url>
     <loc>https://www.a8king.com/articles/2026/02/06/bitcoin-rises-to-usd70-000-extending-bounce-from-thursday-s-crash</loc>
@@ -47,21 +62,6 @@
   </url>
   
   <url>
-    <loc>https://www.a8king.com/articles/2026/02/06/broad-based-bitcoin-accumulation-emerges-after-sharp-capitulation</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <lastmod>2026-02-07</lastmod>
-    <news:news>
-      <news:publication>
-        <news:name>CryptoA8King</news:name>
-        <news:language>zh</news:language>
-      </news:publication>
-      <news:publication_date>2026-02-07</news:publication_date>
-      <news:title>比特幣在急劇拋售後出現廣泛的累積現象</news:title>
-    </news:news>
-  </url>
-  
-  <url>
     <loc>https://www.a8king.com/articles/2026/02/06/ripple-lays-out-institutional-defi-blueprint-for-xrpl-with-xrp-at-center</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -73,6 +73,21 @@
       </news:publication>
       <news:publication_date>2026-02-07</news:publication_date>
       <news:title>隨著Ripple為XRPL制定機構DeFi藍圖，XRP成為焦點</news:title>
+    </news:news>
+  </url>
+  
+  <url>
+    <loc>https://www.a8king.com/articles/2026/02/06/broad-based-bitcoin-accumulation-emerges-after-sharp-capitulation</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-02-07</lastmod>
+    <news:news>
+      <news:publication>
+        <news:name>CryptoA8King</news:name>
+        <news:language>zh</news:language>
+      </news:publication>
+      <news:publication_date>2026-02-07</news:publication_date>
+      <news:title>比特幣在急劇拋售後出現廣泛的累積現象</news:title>
     </news:news>
   </url>
   
@@ -102,7 +117,7 @@
         <news:language>zh</news:language>
       </news:publication>
       <news:publication_date>2026-02-07</news:publication_date>
-      <news:title>加密貨幣市場在經歷拋���後迎來曙光，比特幣價格曾跌至2024年10月以來最低點</news:title>
+      <news:title>加密貨幣市場在經歷拋售後迎來曙光，比特幣價格曾跌至2024年10月以來最低點</news:title>
     </news:news>
   </url>
   

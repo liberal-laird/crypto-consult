@@ -27,8 +27,8 @@ export async function GET() {
     // 随机选择一个slug
     const randomSlug = result.rows[0].slug;
     
-    // 302 跳转到文章页面
-    const articleUrl = new URL(`/articles/${randomSlug}`, 'https://www.a8king.com');
+    // 302 跳转到文章页面 (slug 需要编码)
+    const articleUrl = new URL(`/articles/${encodeURIComponent(randomSlug)}`, 'https://www.a8king.com');
     
     return NextResponse.redirect(articleUrl, 302);
     

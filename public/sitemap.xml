@@ -32,21 +32,6 @@
 
   
   <url>
-    <loc>https://www.a8king.com/articles/test-123</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <lastmod>2026-02-10</lastmod>
-    <news:news>
-      <news:publication>
-        <news:name>CryptoA8King</news:name>
-        <news:language>zh</news:language>
-      </news:publication>
-      <news:publication_date>2026-02-10</news:publication_date>
-      <news:title>測試</news:title>
-    </news:news>
-  </url>
-  
-  <url>
     <loc>https://www.a8king.com/articles/2026/02/09/bitcoin-major-tokens-drop-as-traders-position-for-downside-protection</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -58,6 +43,21 @@
       </news:publication>
       <news:publication_date>2026-02-09</news:publication_date>
       <news:title>比特幣與主要代幣價格下跌，交易員紛紛採取避險策略</news:title>
+    </news:news>
+  </url>
+  
+  <url>
+    <loc>https://www.a8king.com/articles/2026/02/06/bitcoin-rises-to-usd70-000-extending-bounce-from-thursday-s-crash</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-02-07</lastmod>
+    <news:news>
+      <news:publication>
+        <news:name>CryptoA8King</news:name>
+        <news:language>zh</news:language>
+      </news:publication>
+      <news:publication_date>2026-02-07</news:publication_date>
+      <news:title>比特幣價格回升至7萬美元以上，延續了週四暴跌後的反彈走勢。</news:title>
     </news:news>
   </url>
   
@@ -268,21 +268,6 @@
       </news:publication>
       <news:publication_date>2026-02-07</news:publication_date>
       <news:title>Galaxy Digital股價飆升18%，公司批准2億美元回購計劃</news:title>
-    </news:news>
-  </url>
-  
-  <url>
-    <loc>https://www.a8king.com/articles/2026/02/06/bitcoin-rises-to-usd70-000-extending-bounce-from-thursday-s-crash</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <lastmod>2026-02-07</lastmod>
-    <news:news>
-      <news:publication>
-        <news:name>CryptoA8King</news:name>
-        <news:language>zh</news:language>
-      </news:publication>
-      <news:publication_date>2026-02-07</news:publication_date>
-      <news:title>比特幣價格回升至7萬美元以上，延續了週四暴跌後的反彈走勢。</news:title>
     </news:news>
   </url>
   

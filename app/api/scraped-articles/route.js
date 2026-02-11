@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 
-const SUPABASE_URL = process.env.SUPABASE_URL || 'https://fokilsfcnablraexmtju.supabase.co';
+// 使用 Vercel 環境變量
+const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL || 'https://fokilsfcnablraexmtju.supabase.co';
 const SUPABASE_SECRET = process.env.SUPABASE_SECRET_KEY || '';
 
 async function getArticlesFromDB(page = 1, limit = 30) {

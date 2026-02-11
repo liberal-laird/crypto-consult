@@ -99,11 +99,19 @@ export async function GET(request) {
     
     console.log(`返回 ${result.articles.length} 篇文章`);
     
+    // 返回 JSON，禁用缓存确保实时更新
     return NextResponse.json({ 
       articles: result.articles,
       source: 'database',
       pagination: result.pagination,
       count: result.articles.length
+    }, {
+      headers: {
+        'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+        'Pragma': 'no-cache',
+        'Expires': '0',
+        'Surrogate-Control': 'no-store'
+      }
     });
   } catch (error) {
     console.error('API error:', error);

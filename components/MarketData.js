@@ -49,48 +49,23 @@ export default function MarketTicker() {
   useEffect(() => {
     async function fetchPrices() {
       try {
-        // Try to fetch from Backpack API
-        const results = [];
+        // Use our own API proxy to avoid CORS issues
+        const response = await fetch('/api/market', {
+          cache: 'no-store'
+        });
         
-        for (const pair of POPULAR_PAIRS) {
-          try {
-            const symbol = pair.replace('_USDC', '');
-            const response = await fetch(
-              `https://api.backpack.exchange/api/v1/ticker?symbol=${pair}`,
-              { cache: 'no-store' }
-            );
-            
-            if (response.ok) {
-              const data = await response.json();
-              results.push({
-                symbol,
-                name: COIN_NAMES[symbol] || symbol,
-                price: parseFloat(data.lastPrice) || 0,
-                change24h: (parseFloat(data.priceChangePercent) * 100) || 0,
-                high: parseFloat(data.high) || 0,
-                low: parseFloat(data.low) || 0
-              });
-            } else {
-              // Use demo data
-              const demo = DEMO_DATA[symbol];
-              if (demo) {
-                results.push({ symbol, name: COIN_NAMES[symbol] || symbol, ...demo });
-              }
-            }
-          } catch (err) {
-            // Use demo data on error
-            const demo = DEMO_DATA[symbol];
-            if (demo) {
-              results.push({ symbol, name: COIN_NAMES[symbol] || symbol, ...demo });
-            }
+        if (response.ok) {
+          const data = await response.json();
+          if (data.success && data.data) {
+            setPrices(data.data);
+            setLastUpdate(new Date().toLocaleString('zh-CN'));
+            setError(null);
+          } else {
+            throw new Error(data.error || 'Failed to fetch data');
           }
+        } else {
+          throw new Error('API returned error');
         }
-
-        // Sort by price descending
-        results.sort((a, b) => b.price - a.price);
-        setPrices(results);
-        setLastUpdate(new Date().toLocaleString('zh-CN'));
-        setError(null);
       } catch (err) {
         console.error('Failed to fetch prices:', err);
         setError(err.message);
@@ -110,8 +85,8 @@ export default function MarketTicker() {
 
     fetchPrices();
     
-    // Refresh every 60 seconds
-    const interval = setInterval(fetchPrices, 60000);
+    // Refresh every 30 seconds (faster than 60s)
+    const interval = setInterval(fetchPrices, 30000);
     return () => clearInterval(interval);
   }, []);
 

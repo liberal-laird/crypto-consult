@@ -1,65 +1,99 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
 
-const ITEMS_PER_PAGE = 30;
+const ITEMS_PER_PAGE = 12; // 每页12篇，滚动加载
 
 export default function ArticlesPage() {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState('all');
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalArticles, setTotalArticles] = useState(0);
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
+  const [allLoaded, setAllLoaded] = useState(false);
+  const observerRef = useRef(null);
+  const loadMoreRef = useRef(null);
 
-  useEffect(() => {
-    async function fetchArticles() {
-      try {
-        // 分页请求：只获取当前页的数据
-        const res = await fetch(`/api/scraped-articles?page=${currentPage}&limit=${ITEMS_PER_PAGE}`);
-        const data = await res.json();
+  // 获取文章
+  const fetchArticles = useCallback(async (pageNum) => {
+    try {
+      const res = await fetch(`/api/scraped-articles?page=${pageNum}&limit=${ITEMS_PER_PAGE}`);
+      const data = await res.json();
+      
+      if (data.articles && data.articles.length > 0) {
+        const newArticles = data.articles;
         
-        // 如果后端返回总数，设置总数；否则根据数据估算
-        if (data.pagination) {
-          setArticles(data.articles || []);
-          setTotalArticles(data.pagination.total || data.articles?.length || 0);
-        } else {
-          // 兼容旧API：手动计算分页
-          const allArticles = data.articles || [];
-          setTotalArticles(allArticles.length);
-          
-          // 计算当前页应该显示的数据
-          const start = (currentPage - 1) * ITEMS_PER_PAGE;
-          const end = start + ITEMS_PER_PAGE;
-          setArticles(allArticles.slice(start, end));
+        // 如果没有更多数据
+        if (newArticles.length < ITEMS_PER_PAGE || 
+            (data.pagination?.total && pageNum * ITEMS_PER_PAGE >= data.pagination.total)) {
+          setHasMore(false);
+          setAllLoaded(true);
         }
-      } catch (error) {
-        console.error('Failed to fetch articles:', error);
-        // 降级：获取全部（向后兼容）
-        try {
-          const res = await fetch('/api/scraped-articles');
-          const data = await res.json();
-          const allArticles = data.articles || [];
-          setTotalArticles(allArticles.length);
-          const start = (currentPage - 1) * ITEMS_PER_PAGE;
-          const end = start + ITEMS_PER_PAGE;
-          setArticles(allArticles.slice(start, end));
-        } catch (e) {
-          console.error('Fallback also failed:', e);
-        }
-      } finally {
-        setLoading(false);
+        
+        // 根据筛选过滤
+        const filtered = filter === 'all' 
+          ? newArticles 
+          : newArticles.filter(a => a.category === filter);
+        
+        setArticles(prev => [...prev, ...filtered]);
+      } else {
+        setHasMore(false);
+        setAllLoaded(true);
       }
+    } catch (error) {
+      console.error('Failed to fetch articles:', error);
+    } finally {
+      setLoading(false);
+    }
+  }, [filter]);
+
+  // 初始化加载
+  useEffect(() => {
+    setArticles([]);
+    setPage(1);
+    setHasMore(true);
+    setAllLoaded(false);
+    setLoading(true);
+    fetchArticles(1);
+  }, [filter, fetchArticles]);
+
+  // 滚动监听 - Intersection Observer
+  useEffect(() => {
+    if (allLoaded || !hasMore) return;
+    
+    if (observerRef.current) {
+      observerRef.current.disconnect();
     }
     
-    fetchArticles();
-  }, [currentPage]);
+    observerRef.current = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && !loading) {
+          const nextPage = page + 1;
+          setPage(nextPage);
+          fetchArticles(nextPage);
+        }
+      },
+      { threshold: 0.1, rootMargin: '100px' }
+    );
+    
+    if (loadMoreRef.current) {
+      observerRef.current.observe(loadMoreRef.current);
+    }
+    
+    return () => {
+      if (observerRef.current) {
+        observerRef.current.disconnect();
+      }
+    };
+  }, [loading, hasMore, allLoaded, page, fetchArticles]);
 
-  const allArticles = [...articles];
-
+  // 过滤后的文章
   const filteredArticles = filter === 'all' 
-    ? allArticles 
-    : allArticles.filter(a => a.category === filter);
+    ? articles 
+    : articles.filter(a => a.category === filter);
+
+  const categories = ['all', '比特幣', 'DeFi', '技術', '新聞', '投資', 'MICA分析'];
 
   const formatDate = (dateString) => {
     if (!dateString) return '';
@@ -74,9 +108,6 @@ export default function ArticlesPage() {
     }
   };
 
-  const categories = ['all', '比特幣', 'DeFi', '技術', '新聞', '投資', 'MICA分析'];
-  const totalPages = Math.ceil(totalArticles / ITEMS_PER_PAGE);
-
   return (
     <main style={{ 
       minHeight: '100vh', 
@@ -84,35 +115,6 @@ export default function ArticlesPage() {
       color: '#ffffff',
       fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
     }}>
-      {/* Structured Data - CollectionPage */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'CollectionPage',
-            name: '文章列表 - CryptoA8King',
-            description: '專業的加密貨幣投資諮詢、市場分析和 DeFi 指南文章',
-            url: 'https://crypto-consult-seven.vercel.app/articles',
-            mainEntity: {
-              '@type': 'ItemList',
-              numberOfItems: filteredArticles.length,
-              itemListElement: filteredArticles.map((article, index) => ({
-                '@type': 'ListItem',
-                position: (currentPage - 1) * ITEMS_PER_PAGE + index + 1,
-                item: {
-                  '@type': 'Article',
-                  name: article.title,
-                  url: `https://crypto-consult-seven.vercel.app/articles/${article.md5 || article.id}`,
-                  description: article.summary || article.excerpt,
-                  articleSection: article.category
-                }
-              }))
-            }
-          })
-        }}
-      />
-      
       {/* Header */}
       <header style={{ 
         background: '#161b22', 
@@ -166,10 +168,7 @@ export default function ArticlesPage() {
           {categories.map(cat => (
             <button
               key={cat}
-              onClick={() => {
-                setFilter(cat);
-                setCurrentPage(1); // 重置到第一页
-              }}
+              onClick={() => setFilter(cat)}
               style={{
                 padding: '0.5rem 1.25rem',
                 borderRadius: '20px',
@@ -203,7 +202,7 @@ export default function ArticlesPage() {
           }}>
             {filteredArticles.map((article) => (
               <article 
-                key={article.id} 
+                key={article.id || article.slug}
                 style={{
                   background: '#161b22',
                   borderRadius: '12px',
@@ -235,9 +234,9 @@ export default function ArticlesPage() {
                     marginBottom: '0.75rem',
                     lineHeight: 1.4
                   }}>
-                    {article.md5 || article.id ? (
+                    {article.slug || article.id ? (
                       <Link 
-                        href={`/articles/${encodeURIComponent(article.md5 || article.id)}`}
+                        href={`/articles/${encodeURIComponent(article.slug || article.id)}`}
                         style={{ 
                           color: '#ffffff', 
                           textDecoration: 'none' 
@@ -265,7 +264,7 @@ export default function ArticlesPage() {
                     color: '#6e7681',
                     fontSize: '0.8rem'
                   }}>
-                    <span>📅 {formatDate(article.created_at || article.published_at)}</span>
+                    <span>📅 {formatDate(article.published_at || article.created_at)}</span>
                   </div>
                 </div>
               </article>
@@ -285,61 +284,21 @@ export default function ArticlesPage() {
           </div>
         )}
 
-        {/* Pagination */}
-        {!loading && totalPages > 1 && (
-          <div style={{ 
+        {/* Load More Trigger */}
+        <div 
+          ref={loadMoreRef}
+          style={{ 
+            height: '60px',
+            marginTop: '2rem',
             display: 'flex',
             justifyContent: 'center',
-            alignItems: 'center',
-            gap: '1rem',
-            marginTop: '2rem',
-            padding: '1.5rem 0'
-          }}>
-            {/* Previous Page */}
-            <button
-              onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
-              disabled={currentPage === 1}
-              style={{
-                padding: '0.75rem 1.5rem',
-                borderRadius: '8px',
-                border: '1px solid #30363d',
-                background: currentPage === 1 ? 'transparent' : '#161b22',
-                color: currentPage === 1 ? '#6e7681' : '#ffffff',
-                cursor: currentPage === 1 ? 'not-allowed' : 'pointer',
-                fontSize: '0.9rem',
-                transition: 'all 0.2s'
-              }}
-            >
-              ← 上一頁
-            </button>
-            
-            {/* Page Info */}
-            <span style={{ color: '#8b949e' }}>
-              第 {currentPage} / {totalPages} 頁
-              <span style={{ marginLeft: '1rem', fontSize: '0.85rem' }}>
-                (共 {totalArticles} 篇)
-              </span>
-            </span>
-            
-            {/* Next Page */}
-            <button
-              onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
-              disabled={currentPage === totalPages}
-              style={{
-                padding: '0.75rem 1.5rem',
-                borderRadius: '8px',
-                border: '1px solid #30363d',
-                background: currentPage === totalPages ? 'transparent' : '#161b22',
-                color: currentPage === totalPages ? '#6e7681' : '#ffffff',
-                cursor: currentPage === totalPages ? 'not-allowed' : 'pointer',
-                fontSize: '0.9rem',
-                transition: 'all 0.2s'
-              }}
-            >
-              更多文章 →
-            </button>
-          </div>
-        )}
+            alignItems: 'center'
+          }}
+        >
+          {loading && <span style={{ color: '#8b949e' }}>⏳ 加載中...</span>}
+          {!loading && hasMore && <span style={{ color: '#8b949e' }}>↓ 向下滾動加載更多</span>}
+          {allLoaded && <span style={{ color: '#6e7681' }}>— 已顯示全部文章 —</span>}
+        </div>
       </section>
 
       {/* Footer */}

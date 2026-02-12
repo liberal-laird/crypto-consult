@@ -11,10 +11,10 @@ export async function GET(request, { params }) {
   }
   
   try {
-    // 支持通过 md5_hash 或 id 查询
-    const url = `${SUPABASE_URL}/rest/v1/articles?md5_hash=eq.${slug}&select=*`;
+    // 首先尝试用 slug 查询
+    const slugUrl = `${SUPABASE_URL}/rest/v1/articles?slug=eq.${encodeURIComponent(slug)}&select=*`;
     
-    const response = await fetch(url, {
+    const response = await fetch(slugUrl, {
       headers: {
         'Authorization': `Bearer ${SUPABASE_SECRET}`,
         'apikey': SUPABASE_SECRET,
@@ -22,17 +22,12 @@ export async function GET(request, { params }) {
       }
     });
     
-    if (!response.ok) {
-      console.error('Supabase error:', response.status);
-      return NextResponse.json({ error: '文章未找到' }, { status: 404 });
-    }
-    
-    const data = await response.json();
+    let data = await response.json();
     
     if (!data || data.length === 0) {
-      // 尝试用id查询
-      const idUrl = `${SUPABASE_URL}/rest/v1/articles?id=eq.${slug}&select=*`;
-      const idRes = await fetch(idUrl, {
+      // 尝试用 md5_hash 查询
+      const md5Url = `${SUPABASE_URL}/rest/v1/articles?md5_hash=eq.${slug}&select=*`;
+      const md5Res = await fetch(md5Url, {
         headers: {
           'Authorization': `Bearer ${SUPABASE_SECRET}`,
           'apikey': SUPABASE_SECRET,
@@ -40,13 +35,24 @@ export async function GET(request, { params }) {
         }
       });
       
-      const idData = await idRes.json();
-      if (!idData || idData.length === 0) {
-        return NextResponse.json({ error: '文章未找到' }, { status: 404 });
-      }
+      data = await md5Res.json();
       
-      const article = idData[0];
-      return NextResponse.json(formatArticle(article));
+      if (!data || data.length === 0) {
+        // 尝试用 id 查询
+        const idUrl = `${SUPABASE_URL}/rest/v1/articles?id=eq.${slug}&select=*`;
+        const idRes = await fetch(idUrl, {
+          headers: {
+            'Authorization': `Bearer ${SUPABASE_SECRET}`,
+            'apikey': SUPABASE_SECRET,
+            'Content-Type': 'application/json'
+          }
+        });
+        
+        data = await idRes.json();
+        if (!data || data.length === 0) {
+          return NextResponse.json({ error: '文章未找到' }, { status: 404 });
+        }
+      }
     }
     
     const article = data[0];
